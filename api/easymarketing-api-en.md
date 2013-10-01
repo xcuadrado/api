@@ -15,9 +15,7 @@ All requests go to
 
 **Params**
 
-    {
-      "website_url": "url of the vendor without http, required"
-    }
+    :website_url = url of the vendor without http, required
 
 **Example**
 
@@ -237,9 +235,7 @@ provides the details to his facebook fanpage in the easymarketing system.
 
 **Params**
 
-    {
-      "website_url": "the website url of the easymarketing user. required."
-    }
+    :website_url = the website url of the easymarketing user. Required.
 
 **Example**
 
