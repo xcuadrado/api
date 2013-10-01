@@ -133,48 +133,55 @@ PRODUCT BY ID
 
 **Response:**
 
-{
-  "offset": 0,
-    "products": [
-    {
-      "id": 0,
-      "name": "Name of product",
-      "categories": [
-        0,
-      1,
-      2,
-      3
-        ],
-      "price": 24.50,
-      "url": "http://example.com/products/1",
-      "colors": [
-        "green",
-      "blue",
-      "red"
-        ],
-      "description": "Description of product",
-      "specification": "specifications of product",
-      "dependency": "dependencies of product",
-      "margin": 0.56
-    }
-  ]
-}
+	{
+	  "offset": 0,
+	    "products": [
+	    {
+	      "id": 0,
+	      "name": "Name of product",
+	      "categories": [
+	        0,
+	      	1,
+	      	2,
+	      	3
+	      ],
+	      "condition": "new",
+	      "availability": "in stock",
+	      "price": 24.50,
+	      "url": "http://example.com/products/1",
+	      "image_url": "http://example.com/product_images/1.jpeg",
+	      "shipping": [
+	      	  {
+				"country": "DE",
+				"service": "Standard",
+				"price": 4.95
+			  }
+	      ],
+	      "description": "Description of product",
+	      "specification": "specifications of product",
+	      "dependency": "dependencies of product",
+	      "margin": 0.56
+	    }
+	  ]
+	}
 
 #### Required Attributes
 
 * The `id` of a product must be an `Integer` or `String`.
 
+* The `name` is the name of that Product. Type `String`.
+
 * The `categories` Array must be an `Array of Integer` or `Array of String`. These category ids must be out of the set of ids of the previously extracted categories. That way the product can be associated to it's actual categories.
 
 * For the `condition` attribute there are only three accepted `String` values:
 
-* 'new': The product is brand-new and has never been used. It's in its original packaging which has not been opened.
+	* 'new': The product is brand-new and has never been used. It's in its original packaging which has not been opened.
 
-* 'refurbished': The product has been restored to working order. This includes, for example, remanufactured printer cartridges.
+	* 'refurbished': The product has been restored to working order. This includes, for example, remanufactured printer cartridges.
 
-* 'used': If the two previous values don't apply. For example, if the product has been used before or the original packaging has been opened or is missing.
+	* 'used': If the two previous values don't apply. For example, if the product has been used before or the original packaging has been opened or is missing.
 
-* For the `availability` attribute only has four accepted values:
+* For the `availability` attribute only has four accepted `String` values:
 
   * 'in stock': Include this value if you are certain that it will ship (or be in-transit to the customer) in 3 business days or less. For example, if you have the item available in your warehouse.
   * 'available for order': Include this value if it will take 4 or more business days to ship it to the customer. For example, if you don’t have it in your warehouse at the moment, but are sure that it will arrive in the next few days. For unreleased products, use the value 'preorder'
@@ -187,9 +194,17 @@ PRODUCT BY ID
 
 * The `shipping` attribute is an `Array of Object` and the Objects have the following attributes:
 
-  * `country` The country to which an item will be delivered (as an ISO 3166 country code). Example: "DE" for Germany. Type `String`.
-  * `service` **OPTIONAL** The service class or delivery speed. For example "Standard". Type `String`.
-  * `price` Fixed delivery price (including tax). For example 4.95. Type `Integer` or `Float`.
+	* `country` The country to which an item will be delivered (as an ISO 3166 country code). Example: "DE" for Germany. Type `String`.
+	* `service` **OPTIONAL** The service class or delivery speed. For example "Standard". Type `String`.
+	* `price` Fixed delivery price (including tax). For example 4.95. Type `Integer` or `Float`.
+
+Example:
+
+	{
+		"country": "DE",
+		"service": "Standard",
+		"price": 4.95
+	}
 
 ##### Additional Attributes for the non Apparel/Custom Good Category
 
@@ -244,7 +259,6 @@ In this second example the pair of jeans comes in 2 colors, 2 sizes and 2 materi
 
 #### Optional Attributes
 
-FOOBAR
 
 
 The route turns exactly or less than products that specified through the limit
