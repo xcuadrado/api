@@ -20,53 +20,45 @@ An example use of this is the following request:
 
 If you don't provide this version header the API will fallback to the default value which is always the most current API version. At the time of writing that is version 1 so currently there is no difference with or without providing the header. Should the API version get increased to the next number and your requests do not provide the version then you might get unexpected results because the version increase might break the behaviour of certain routes.
 
-## Conversion pixel
-
-Integrate the conversion pixel on your checkout success page whenever a sale
-has been generated.
-
-**Route**
-
-    GET /conversion_tracker/:website_url_of_vendor
-
-**Params**
-
-    :website_url = url of the vendor without http, required
-
-**Example**
-
-    GET /conversion_tracker/google.de
-
-**Response**
-
-    Status: 200
-
-    {
-      "user_id": 1,
-      "code": '<script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 982579417; var google_conversion_language = "en"; var google_conversion_format = "3"; var google_conversion_color = "ffffff"; var google_conversion_label = "cdl_CJe02gcQ2fHD1AM"; var google_conversion_value = 0; var google_remarketing_only = false; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/> </div> </noscript>'
-    }
-
-
-## Extract Products/Categories from remote Shopsystem
+## Extract Products/Categories from remote Shop
 
 Easymarketing can read a vendor's product/category data via a JSON Interface.
 The webservice is called when the easymarketing user selects to import data
-via an interface.
+via an interface. The data is then used to generate ads in the client's
+adwords account. This interface is to be developed by the easymarketing
+partners.
 
-We save our partners routes in our database:
+The process is usually the following:
 
-    /easymarketing_api/categories
-    /easymarketing_api/products
+* The user creates an Easymarketing account.
+* The user reads about a plugin developed for his shopsystem.
+* The user then installs this plugin per our requirements.
+* User proceeds and connects Easymarketing with his Shop via the plugin.
 
-We will then send requests to:
+For this the user has to enter several API endpoints in his easymarketing
+account. The following routes are mandatory and need to be provided.
+Please refer below to how the actual API endpoints should behave.
 
-    http://meinshop.de/easymarketing_api/categories
-    http://meinshop.de/easymarketing_api/products
+API Endpoint for categories.
 
-Depending on the user's shopsystem.
+    Returns the shops categories.
+    http://foo.com/easymarketing_api/categories
 
-So once you are done developing the module, let us know the respective urls
-for your shopsystem.
+API Endpoint for products.
+
+    Returns the products categories.
+    http://foo.com/easymarketing_api/products
+
+API Endpoint for newest products.
+
+    Returns a list of newest products
+    http://foo.com/easymarketing_api/best_products
+
+API Endpoint for best selling products.
+
+    Returns a list of best selling products.
+    http://foo.com/easymarketing_api/best_products
+
 
 ### Extracting the category tree
 
@@ -236,6 +228,36 @@ The following response data is optional:
     colors, description, specification, dependency, margin (the profit the vendor on sale of the product)
 
 Please see the above example of data types that should be returned.
+
+
+## Conversion tracker
+
+This returns a tracking code that is to be integrated on the vendor's checkout
+success page. This way easymarketing can track actual sales and optimize the
+Adwords campaign. This conversion tracker should be stored in your local DB
+for later use. This can be requested when the user proceeds and installs the
+easymarketing extension in your system.
+
+**Route**
+
+    GET /conversion_tracker/:website_url_of_vendor
+
+**Params**
+
+    :website_url = url of the vendor without http, required
+
+**Example**
+
+    GET /conversion_tracker/google.de
+
+**Response**
+
+    Status: 200
+
+    {
+      "user_id": 1,
+      "code": '<script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 982579417; var google_conversion_language = "en"; var google_conversion_format = "3"; var google_conversion_color = "ffffff"; var google_conversion_label = "cdl_CJe02gcQ2fHD1AM"; var google_conversion_value = 0; var google_remarketing_only = false; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/> </div> </noscript>'
+    }
 
 
 ## Facebook API integration
