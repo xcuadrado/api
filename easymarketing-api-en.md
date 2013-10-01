@@ -64,22 +64,22 @@ for your shopsystem.
 
 **Response:**
 
-	{
-	  "parent": {
-	    "id": 1,
-	    "name": "Category One"
-	  },
-	  "children": [
-	    {
-	      "id": 100,
-	      "name": "Category 100"
-	    },
-	    {
-	      "id": 101,
-	      "name": "Category 101"
-	    }
-	  ]
-	}
+  {
+    "parent": {
+      "id": 1,
+      "name": "Category One"
+    },
+    "children": [
+      {
+        "id": 100,
+        "name": "Category 100"
+      },
+      {
+        "id": 101,
+        "name": "Category 101"
+      }
+    ]
+  }
 
 
 The response always includes the data identified through the parent_id. When
@@ -102,32 +102,32 @@ EASYMARKETING can recursively fetch your category tree.
 
 **Response:**
 
-	{
-	  "offset": 0,
-	  "products": [
-	    {
-	      "id": 0,
-	      "name": "Name of product",
-	      "categories": [
-	        0,
-	        1,
-	        2,
-	        3
-	      ],
-	      "price": 24.50,
-	      "url": "http://example.com/products/1",
-	      "colors": [
-	        "green",
-	        "blue",
-	        "red"
-	      ],
-	      "description": "Description of product",
-	      "specification": "specifications of product",
-	      "dependency": "dependencies of product",
-	      "margin": 0.56
-	    }
-	  ]
-	}
+  {
+    "offset": 0,
+    "products": [
+      {
+        "id": 0,
+        "name": "Name of product",
+        "categories": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "price": 24.50,
+        "url": "http://example.com/products/1",
+        "colors": [
+          "green",
+          "blue",
+          "red"
+        ],
+        "description": "Description of product",
+        "specification": "specifications of product",
+        "dependency": "dependencies of product",
+        "margin": 0.56
+      }
+    ]
+  }
 
 #### Required Attributes
 
@@ -145,10 +145,10 @@ EASYMARKETING can recursively fetch your category tree.
 
 * For the `availability` attribute only has four accepted values:
 
-	* 'in stock': Include this value if you are certain that it will ship (or be in-transit to the customer) in 3 business days or less. For example, if you have the item available in your warehouse.
-	* 'available for order': Include this value if it will take 4 or more business days to ship it to the customer. For example, if you don’t have it in your warehouse at the moment, but are sure that it will arrive in the next few days. For unreleased products, use the value 'preorder'
-	* 'out of stock': You’re currently not accepting orders for this product. (Important tip: When your products are out of stock on your website, don't remove them from your data feed. Provide this value instead).
-	* 'preorder': You are taking orders for this product, but it’s not yet been released.
+  * 'in stock': Include this value if you are certain that it will ship (or be in-transit to the customer) in 3 business days or less. For example, if you have the item available in your warehouse.
+  * 'available for order': Include this value if it will take 4 or more business days to ship it to the customer. For example, if you don’t have it in your warehouse at the moment, but are sure that it will arrive in the next few days. For unreleased products, use the value 'preorder'
+  * 'out of stock': You’re currently not accepting orders for this product. (Important tip: When your products are out of stock on your website, don't remove them from your data feed. Provide this value instead).
+  * 'preorder': You are taking orders for this product, but it’s not yet been released.
 
 * The `price` attribute is of the type `Integer` or `Float`. The price includes taxes.
 
@@ -156,9 +156,9 @@ EASYMARKETING can recursively fetch your category tree.
 
 * The `shipping` attribute is an `Array of Object` and the Objects have the following attributes:
 
-	* `country` The country to which an item will be delivered (as an ISO 3166 country code). Example: "DE" for Germany. Type `String`.
-	* `service` **OPTIONAL** The service class or delivery speed. For example "Standard". Type `String`.
-	* `price` Fixed delivery price (including tax). For example 4.95. Type `Integer` or `Float`.
+  * `country` The country to which an item will be delivered (as an ISO 3166 country code). Example: "DE" for Germany. Type `String`.
+  * `service` **OPTIONAL** The service class or delivery speed. For example "Standard". Type `String`.
+  * `price` Fixed delivery price (including tax). For example 4.95. Type `Integer` or `Float`.
 
 ##### Additional Attributes for the non Apparel/Custom Good Category
 
@@ -169,20 +169,20 @@ EASYMARKETING can recursively fetch your category tree.
 ##### Additional Attributes for the Apparel Category
 * `shipping_weight` The shipping weight of this item. Example: "800 g". Type `String`
 * `gender`. Type `String`. The accepted values are:
-	* `Male`
-	* `Female`
-	* `Unisex`
+  * `Male`
+  * `Female`
+  * `Unisex`
 
 * `age_group`. Type `String`. The accepted values are:
-	* `Adult`
-	* `Kids`
+  * `Adult`
+  * `Kids`
 
 * Variants. For example if you have a shirt in 4 colors and 5 sizes:
 
-		{
-			"red": ["S", "M", "L", "XL", "XXL"],
-			"blue": ["S", "M", "L", "XL", "XXL"]
-		}
+    {
+      "red": ["S", "M", "L", "XL", "XXL"],
+      "blue": ["S", "M", "L", "XL", "XXL"]
+    }
 
 
 ##### Additional Attributes for the Media Category
