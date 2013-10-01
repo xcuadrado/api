@@ -55,28 +55,23 @@ The process is usually the following:
 For this the user has to enter several API endpoints in his easymarketing
 account. The following routes are mandatory and need to be provided.
 
-API Endpoint for categories. Returns the shops categories.
+API Endpoint for categories. Returns the shops' categories.
 
 	http://example.com/easymarketing_api/categories
 
-API Endpoint for products. Returns the shops products.
+API Endpoint for products. Returns the shops' products.
 
     http://example.com/easymarketing_api/products
 
-API Endpoint for new products. Returns a list of new products.
-
-	TODO TODO
-    http://example.com/easymarketing_api/best_products
-	http://example.com/easymarketing_api/
-	TODO TODO
-
-API Endpoint for newest products. Returns a list of newest products.
-
-	http://example.com/easymarketing_api/new_products
-
 API Endpoint for best selling products. Returns a list of best selling products.
 
-	http://example.com/easymarketing_api/best_products
+    http://example.com/easymarketing_api/best_products
+
+API Endpoint for new products. Returns a list of new products.
+
+    http://example.com/easymarketing_api/new_products
+
+
 
 Please refer below on how the those API endpoints are accessed by
 easymarketing. The sample url will be replaced with the url the user entered
