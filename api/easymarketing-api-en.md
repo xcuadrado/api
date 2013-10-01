@@ -54,21 +54,20 @@ The process is usually the following:
 
 For this the user has to enter several API endpoints in his easymarketing
 account. The following routes are mandatory and need to be provided.
-Please refer below to how the actual API endpoints should behave.
 
 API Endpoint for categories.
 
     Returns the shops categories.
-    http://foo.com/easymarketing_api/categories
+    http://foo.com/api/categories
 
 API Endpoint for products.
 
     Returns the products categories.
-    http://foo.com/easymarketing_api/products
+    http://foo.com/api/products
 
-API Endpoint for newest products.
+API Endpoint for new products.
 
-    Returns a list of newest products
+    Returns a list of new products.
     http://foo.com/easymarketing_api/best_products
 
 API Endpoint for best selling products.
@@ -76,8 +75,12 @@ API Endpoint for best selling products.
     Returns a list of best selling products.
     http://foo.com/easymarketing_api/best_products
 
+Please refer below on how the those API endpoints are accessed by
+easymarketing. The sample url will be replaced with the url the user entered
+in his easymarketing account. What remains the same are the query string
+parameters appeneded to the url.
 
-### Extracting the category tree
+### API Endpoint for categories
 
 **Params:**
 
@@ -86,9 +89,7 @@ API Endpoint for best selling products.
 
 **Example:**
 
-    {
-      "parent_id": 1
-    }
+    http://foo.com/api/categories?parent_id=1
 
 **Response:**
 
@@ -115,18 +116,15 @@ parent_id = 0 is requested, the root categories of the shop are requested. If
 there are no children for a category, children must be empty. This way
 EASYMARKETING can recursively fetch your category tree.
 
-### Extracting product data
+### API Endpoint for products.
 
 **Params:**
 
-        offset (Integer), limit (Integer)
+    offset (Integer), limit (Integer)
 
 **Example:**
 
-    {
-        "offset": 0,
-        "limit": 10
-    }
+    http://foo.com/api/products?offset=0&limit=10
 
 **Response:**
 
@@ -245,6 +243,64 @@ The following response data is optional:
     colors, description, specification, dependency, margin (the profit the vendor on sale of the product)
 
 Please see the above example of data types that should be returned.
+
+
+### API Endpoint for new products.
+
+This returns the newest products since a given timestamp until today.
+The product id's need to be returned. We will match this internally with our own database.
+
+**Params**
+
+    limit: Integer, newer_than: Integer(UNIX timestamp)
+
+**Example**
+
+    http://foo.com/easymarketing_api/new_products?limit=1&newer_than=1380646110
+
+**Response**
+
+    {
+      "time": 1380646110,
+      "newer_than": 1,
+      "products": [
+        // Please refer to the API Endpoint for products for the exact JSON
+        // that is returnd
+      ]
+
+    }
+
+### API Endpoint for best selling products.
+
+Returns an array of product ids, sales that were most sold since a given timeframe
+until today. It should be ordered descending with most sales as first product.
+We will internally match the product ids with our own database.
+
+**Params**
+
+    limit: Integer, most_sold_since: Integer(UNIX timestamp)
+
+**Example**
+
+    http://foo.com/easymarketing_api/best_products?limit=2&most_sold_since=1380646110
+
+**Response**
+
+    {
+      "limit": 2,
+      "most_sold_since": 1,
+      "products": [
+        {
+          "id": 1,
+          "sales": 10
+        },
+        {
+          "id": 2,
+          "sales": 5
+        }
+      ]
+
+    }
 
 
 ## Conversion tracker
