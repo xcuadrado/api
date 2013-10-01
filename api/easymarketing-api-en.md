@@ -18,7 +18,7 @@ An example use of this is the following request:
 
 	curl -H 'Accept: application/vnd.easymarketing.com; version=1' http://api.easymarketing.de/
 
-If you don't provide this version header the API will fallback to the default value which is always the most current API version. At the time of writing that is version 1 so currently there is no difference with or without providing the header. Should the API version get increased to the next number and your requests do not provide the version then you might get unexpected results because the version increase might break the behaviour of certain routes.
+If you don't provide this version header the API will fallback to the default value which is always the most current API version. At the time of writing that is version 1 so currently there is no difference with or without providing the header. Should the API version get increased to the next number and your requests do not provide the version then you might experience unexpected results because the version increase might break the behaviour of certain routes.
 
 ### Authentication
 
@@ -71,8 +71,6 @@ API Endpoint for new products. Returns a list of new products.
 
     http://example.com/easymarketing_api/new_products
 
-
-
 Please refer below on how the those API endpoints are accessed by
 easymarketing. The sample url will be replaced with the url the user entered
 in his easymarketing account. What remains the same are the query string
@@ -94,31 +92,19 @@ parameters appeneded to the url.
 
 **Response:**
 
-
 	  {
-		"parent": {
-		  "id": 1,
-		  "name": "Category One",
-		  "google_product_category": "Apparel & Accessories > Clothing"
-		},
-		"children": [
-		  {
-			"id": 100,
-			"name": "Category 100",
-			"google_product_category": "Apparel & Accessories > Clothing > Pants"
-		  },
-		  {
-			"id": 101,
-			"name": "Category 101",
-			"google_product_category": "Apparel & Accessories > Clothing > Dresses"
-		  }
-		]
+		"id": 1,
+		"name": "Category One",
+		"google_product_category": "Apparel & Accessories > Clothing",
+		"children": [100, 101]
 	  }
 
 
 The response always includes the data identified through the parent_id. If
 there are no children for a category, children must be empty. This way
 EASYMARKETING can recursively fetch your category tree. The extraction starts with the root category id provided along with the API endpoints.
+
+The `children` array must contain the ids of the category's children. The type of these ids can be `Integer` or `String`. These ids will be used to recursively fetch all categories.
 
 The `google_product_category` is an optional attribute. For items that fall into the categories listed below, the value you submit for ‘google product category’ must use the categories as they appear below or the more specific categories provided in [the full Google product taxonomy](https://support.google.com/merchants/answer/1705911). It is not sufficient to provide the highest-level categories, such as 'Apparel & Accessories' or ‘Media’, for these items.
 
@@ -228,16 +214,29 @@ PRODUCT BY ID
 	* Along with each variant, a respective image that visually depicts that variant product is required.
 	* For example: "A pair of Levis 501 jeans"
 
-	"variants": {
-		"blue": {
-			"jeans": {
-				"jeans": {
-					"size"
-				}				
-			}
-		},
-		"black":
-	}
+**Examples**:
+In this first example the pair of jeans comes in 2 colors and 2 sizes, each with an image url depicting that special variant of the jeans. 2 colors * 2 sizes equal 4 variations.
+
+	"variants": [
+	    {"color": "blue", "size": "XS", image_url: "http://..."},
+	    {"color": "blue", "size": "S",  image_url: "http://..."},
+	    {"color": "red", "size": "XS",  image_url: "http://..."},
+	    {"color": "blue", "size": "S",  image_url: "http://..."}
+	]
+
+In this second example the pair of jeans comes in 2 colors, 2 sizes and 2 materials, each with an image url depicting that special variant of the jeans. 2 colors * 2 sizes * 2 materials equals 8 variations.
+
+	"variants": [
+	    {"color": "black", material: "cloth", "size": "XS", image_url: "http://..."},
+	    {"color": "black", material: "cloth", "size": "S",  image_url: "http://..."},
+	    {"color": "red",   material: "cloth", "size": "XS", image_url: "http://..."},
+	    {"color": "red",   material: "cloth", "size": "S",  image_url: "http://..."},
+	    {"color": "black", material: "jeans",   "size": "XS", image_url: "http://..."},
+	    {"color": "black", material: "jeans",   "size": "S",  image_url: "http://..."},
+	    {"color": "red",   material: "jeans",   "size": "XS", image_url: "http://..."},
+	    {"color": "red",   material: "jeans",   "size": "S",  image_url: "http://..."}
+	]
+
 
 
 ##### Additional Attributes for the Media Category
