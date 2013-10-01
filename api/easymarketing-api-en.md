@@ -217,3 +217,42 @@ The following response data is optional:
     colors, description, specification, dependency, margin (the profit the vendor on sale of the product)
 
 Please see the above example of data types that should be returned.
+
+
+## Facebook API integration
+
+The vendor can make use of the easymarketing facebook integration. The route
+returns a like button code that should be integrated on the vendor's checkout
+success page. Triggering it will like the vendor's facebook page. The vendor
+provides the details to his facebook fanpage in the easymarketing system.
+
+**Route**
+
+    GET /facebook_badge/:website_url
+
+**Params**
+
+    {
+      "website_url": "the website url of the easymarketing user. required."
+    }
+
+**Example**
+
+    GET /facebook_badge/easymarketing.de
+
+**Response**
+
+    Status: 200
+
+    {
+      "user_id": 1,
+      "website_url": "easymarketing.de",
+      "code": '<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGoogle&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>'
+    }
+
+Note this retuns the default facebook like button. You can optionally adjust
+width/size of the like button if required on your own by modifying the html.
+
+For a full documentation on the like button refer to:
+
+    https://developers.facebook.com/docs/reference/plugins/like/
