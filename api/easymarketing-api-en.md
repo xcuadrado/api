@@ -20,6 +20,23 @@ An example use of this is the following request:
 
 If you don't provide this version header the API will fallback to the default value which is always the most current API version. At the time of writing that is version 1 so currently there is no difference with or without providing the header. Should the API version get increased to the next number and your requests do not provide the version then you might get unexpected results because the version increase might break the behaviour of certain routes.
 
+### Authentication
+
+The authentication of these API calls is handled via the HTTP `Authorization` Header or URL Params.
+
+An example use of this is the following request:
+
+**Authorization header**:
+
+	curl http://api.easymarketing.de/ -H 'Authorization: Token token="c576f0136149a2e2d9127b3901015545"'
+
+or **URL Parameters**:
+
+	curl 'http://api.easymarketing.de/?access_token=c576f0136149a2e2d9127b3901015545' -I
+
+If a route requires authentication and the caller fails to provide any credentials a **HTTP 401 UNAUTHORIZED** status will be returned.
+
+
 ## Conversion pixel
 
 Integrate the conversion pixel on your checkout success page whenever a sale
