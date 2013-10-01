@@ -1,13 +1,29 @@
 # Easymarketing API
 
+## General
+
+This document describes the Easymarketing API version 1.
+
+### Routes
+
+All requests go to
+
+    http://api.easymarketing.de/
+
+### Versioning
+
+The versioning of all API routes is handled via the HTTP `Accept` Header.
+
+An example use of this is the following request:
+
+	curl -H 'Accept: application/vnd.easymarketing.com; version=1' http://api.easymarketing.de/
+
+If you don't provide this version header the API will fallback to the default value which is always the most current API version. At the time of writing that is version 1 so currently there is no difference with or without providing the header. Should the API version get increased to the next number and your requests do not provide the version then you might get unexpected results because the version increase might break the behaviour of certain routes.
+
 ## Conversion pixel
 
 Integrate the conversion pixel on your checkout success page whenever a sale
 has been generated.
-
-All requests go to
-
-    http://api.easymarketing.de/v1/
 
 **Route**
 
