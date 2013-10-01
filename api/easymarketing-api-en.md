@@ -8,7 +8,7 @@ This document describes the Easymarketing API version 1.
 
 All requests go to
 
-    http://api.easymarketing.de/
+	http://api.easymarketing.de/
 
 ### Versioning
 
@@ -55,25 +55,28 @@ The process is usually the following:
 For this the user has to enter several API endpoints in his easymarketing
 account. The following routes are mandatory and need to be provided.
 
-API Endpoint for categories.
+API Endpoint for categories. Returns the shops categories.
 
-    Returns the shops categories.
-    http://foo.com/api/categories
+	http://example.com/easymarketing_api/categories
 
-API Endpoint for products.
+API Endpoint for products. Returns the shops products.
 
-    Returns the products categories.
-    http://foo.com/api/products
+    http://example.com/easymarketing_api/products
 
-API Endpoint for new products.
+API Endpoint for new products. Returns a list of new products.
 
-    Returns a list of new products.
-    http://foo.com/easymarketing_api/best_products
+	TODO TODO
+    http://example.com/easymarketing_api/best_products
+	http://example.com/easymarketing_api/
+	TODO TODO
 
-API Endpoint for best selling products.
+API Endpoint for newest products. Returns a list of newest products.
 
-    Returns a list of best selling products.
-    http://foo.com/easymarketing_api/best_products
+	http://example.com/easymarketing_api/new_products
+
+API Endpoint for best selling products. Returns a list of best selling products.
+
+	http://example.com/easymarketing_api/best_products
 
 Please refer below on how the those API endpoints are accessed by
 easymarketing. The sample url will be replaced with the url the user entered
@@ -82,41 +85,62 @@ parameters appeneded to the url.
 
 ### API Endpoint for categories
 
+**Route**
+
+	GET http://example.com/easymarketing_api/categories
+
 **Params:**
 
-    parent_id (Integer | String)
-
+	parent_id (Integer | String)
 
 **Example:**
 
-    http://foo.com/api/categories?parent_id=1
+	curl http://example.com/easymarketing_api/categories?parent_id=1
 
 **Response:**
 
-  {
-    "parent": {
-      "id": 1,
-      "name": "Category One"
-    },
-    "children": [
-      {
-        "id": 100,
-        "name": "Category 100"
-      },
-      {
-        "id": 101,
-        "name": "Category 101"
-      }
-    ]
-  }
+
+	  {
+		"parent": {
+		  "id": 1,
+		  "name": "Category One",
+		  "google_product_category": "Apparel & Accessories > Clothing"
+		},
+		"children": [
+		  {
+			"id": 100,
+			"name": "Category 100",
+			"google_product_category": "Apparel & Accessories > Clothing > Pants"
+		  },
+		  {
+			"id": 101,
+			"name": "Category 101",
+			"google_product_category": "Apparel & Accessories > Clothing > Dresses"
+		  }
+		]
+	  }
 
 
-The response always includes the data identified through the parent_id. When
-parent_id = 0 is requested, the root categories of the shop are requested. If
+The response always includes the data identified through the parent_id. If
 there are no children for a category, children must be empty. This way
-EASYMARKETING can recursively fetch your category tree.
+EASYMARKETING can recursively fetch your category tree. The extraction starts with the root category id provided along with the API endpoints.
+
+The `google_product_category` is an optional attribute. For items that fall into the categories listed below, the value you submit for ‘google product category’ must use the categories as they appear below or the more specific categories provided in [the full Google product taxonomy](https://support.google.com/merchants/answer/1705911). It is not sufficient to provide the highest-level categories, such as 'Apparel & Accessories' or ‘Media’, for these items.
+
+* 'Apparel & Accessories > Clothing'
+* 'Apparel & Accessories > Shoes'
+* 'Apparel & Accessories > Clothing Accessories > Sunglasses'
+* 'Apparel & Accessories > Handbags, Wallets & Cases > Handbags'
+* 'Apparel & Accessories > Jewelry > Watches'
+* 'Media > Books'
+* 'Media > DVDs & Movies'
+* 'Media > Music'
+* 'Software > Video Game Software' (Note: this category includes all computer games)
+
 
 ### API Endpoint for products.
+
+PRODUCT BY ID
 
 **Params:**
 
@@ -128,32 +152,32 @@ EASYMARKETING can recursively fetch your category tree.
 
 **Response:**
 
-  {
-    "offset": 0,
+{
+  "offset": 0,
     "products": [
-      {
-        "id": 0,
-        "name": "Name of product",
-        "categories": [
-          0,
-          1,
-          2,
-          3
+    {
+      "id": 0,
+      "name": "Name of product",
+      "categories": [
+        0,
+      1,
+      2,
+      3
         ],
-        "price": 24.50,
-        "url": "http://example.com/products/1",
-        "colors": [
-          "green",
-          "blue",
-          "red"
+      "price": 24.50,
+      "url": "http://example.com/products/1",
+      "colors": [
+        "green",
+      "blue",
+      "red"
         ],
-        "description": "Description of product",
-        "specification": "specifications of product",
-        "dependency": "dependencies of product",
-        "margin": 0.56
-      }
-    ]
-  }
+      "description": "Description of product",
+      "specification": "specifications of product",
+      "dependency": "dependencies of product",
+      "margin": 0.56
+    }
+  ]
+}
 
 #### Required Attributes
 
@@ -203,12 +227,22 @@ EASYMARKETING can recursively fetch your category tree.
   * `Adult`
   * `Kids`
 
-* Variants. For example if you have a shirt in 4 colors and 5 sizes:
+* Variants
+	* Show all possible variants of the same product.
+	* A single product may vary in 'color', 'material', 'pattern', and/or 'size'.
+	* Along with each variant, a respective image that visually depicts that variant product is required.
+	* For example: "A pair of Levis 501 jeans"
 
-    {
-      "red": ["S", "M", "L", "XL", "XXL"],
-      "blue": ["S", "M", "L", "XL", "XXL"]
-    }
+	"variants": {
+		"blue": {
+			"jeans": {
+				"jeans": {
+					"size"
+				}				
+			}
+		},
+		"black":
+	}
 
 
 ##### Additional Attributes for the Media Category
@@ -223,11 +257,11 @@ The route turns exactly or less than products that specified through the limit
 parameter. Products are returned in the range [offset..offset + limit).
 Example:
 
-    Request: offset: 0, limit: 10
-    Response: 10 or less products in the range [0..9]
+	Request: offset: 0, limit: 10
+	Response: 10 or less products in the range [0..9]
 
-    Request offset: 10, limit 10
-    Response: 10 or less products in the range [10..19]
+	Request offset: 10, limit 10
+	Response: 10 or less products in the range [10..19]
 
 The order of the items in the response does not matter, you can freely choose.
 No duplicate products may be returned.
@@ -240,7 +274,7 @@ Products can also be empty.
 
 The following response data is optional:
 
-    colors, description, specification, dependency, margin (the profit the vendor on sale of the product)
+	colors, description, specification, dependency, margin (the profit the vendor on sale of the product)
 
 Please see the above example of data types that should be returned.
 
@@ -313,24 +347,24 @@ easymarketing extension in your system.
 
 **Route**
 
-    GET /conversion_tracker/:website_url_of_vendor
+	GET /conversion_tracker/:website_url_of_vendor
 
 **Params**
 
-    :website_url = url of the vendor without http, required
+	:website_url = url of the vendor without http, required
 
 **Example**
 
-    GET /conversion_tracker/google.de
+	GET /conversion_tracker/google.de
 
 **Response**
 
-    Status: 200
+	Status: 200
 
-    {
-      "user_id": 1,
-      "code": '<script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 982579417; var google_conversion_language = "en"; var google_conversion_format = "3"; var google_conversion_color = "ffffff"; var google_conversion_label = "cdl_CJe02gcQ2fHD1AM"; var google_conversion_value = 0; var google_remarketing_only = false; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/> </div> </noscript>'
-    }
+	{
+	  "user_id": 1,
+	  "code": '<script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 982579417; var google_conversion_language = "en"; var google_conversion_format = "3"; var google_conversion_color = "ffffff"; var google_conversion_label = "cdl_CJe02gcQ2fHD1AM"; var google_conversion_value = 0; var google_remarketing_only = false; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/> </div> </noscript>'
+	}
 
 
 ## Facebook API integration
@@ -342,29 +376,29 @@ provides the details to his facebook fanpage in the easymarketing system.
 
 **Route**
 
-    GET /facebook_badge/:website_url
+	GET /facebook_badge/:website_url
 
 **Params**
 
-    :website_url = the website url of the easymarketing user. Required.
+	:website_url = the website url of the easymarketing user. Required.
 
 **Example**
 
-    GET /facebook_badge/easymarketing.de
+	GET /facebook_badge/easymarketing.de
 
 **Response**
 
-    Status: 200
+	Status: 200
 
-    {
-      "user_id": 1,
-      "website_url": "easymarketing.de",
-      "code": '<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGoogle&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>'
-    }
+	{
+	  "user_id": 1,
+	  "website_url": "easymarketing.de",
+	  "code": '<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGoogle&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>'
+	}
 
 Note this retuns the default facebook like button. You can optionally adjust
 width/size of the like button if required on your own by modifying the html.
 
 For a full documentation on the like button refer to:
 
-    https://developers.facebook.com/docs/reference/plugins/like/
+	https://developers.facebook.com/docs/reference/plugins/like/
