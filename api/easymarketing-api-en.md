@@ -121,7 +121,21 @@ The `google_product_category` is an optional attribute. For items that fall into
 
 ### API Endpoint for products.
 
-PRODUCT BY ID
+The route turns exactly or less than products that specified through the limit
+parameter. Products are returned in the range [offset..offset + limit).
+Example:
+
+	Request: offset: 0, limit: 10
+	Response: 10 or less products in the range [0..9]
+
+	Request offset: 10, limit 10
+	Response: 10 or less products in the range [10..19]
+
+The order of the items in the response does not matter, you can freely choose.
+No duplicate products may be returned.
+
+If less than limit products are returned, we assume that the limit is reached.
+Products can also be empty.
 
 **Params:**
 
@@ -129,7 +143,7 @@ PRODUCT BY ID
 
 **Example:**
 
-    http://foo.com/api/products?offset=0&limit=10
+    http://example.com/api/products?offset=0&limit=10
 
 **Response:**
 
@@ -226,8 +240,8 @@ Example:
 * Variants
 	* Show all possible variants of the same product.
 	* A single product may vary in 'color', 'material', 'pattern', and/or 'size'.
+	* The color attribute is always required.
 	* Along with each variant, a respective image that visually depicts that variant product is required.
-	* For example: "A pair of Levis 501 jeans"
 
 **Examples**:
 In this first example the pair of jeans comes in 2 colors and 2 sizes, each with an image url depicting that special variant of the jeans. 2 colors * 2 sizes equal 4 variations.
@@ -258,34 +272,6 @@ In this second example the pair of jeans comes in 2 colors, 2 sizes and 2 materi
 
 
 #### Optional Attributes
-
-
-
-The route turns exactly or less than products that specified through the limit
-parameter. Products are returned in the range [offset..offset + limit).
-Example:
-
-	Request: offset: 0, limit: 10
-	Response: 10 or less products in the range [0..9]
-
-	Request offset: 10, limit 10
-	Response: 10 or less products in the range [10..19]
-
-The order of the items in the response does not matter, you can freely choose.
-No duplicate products may be returned.
-
-If less than limit products are returned, we assume that the limit is reached.
-Products can also be empty.
-
-
-“categories” are the category ids of the product. The first element of categories is the root/highest parent category. The second, the lower category etc. These category ids must match the ids of existing categories that have been extracted previously through the category tree extraction.
-
-The following response data is optional:
-
-	colors, description, specification, dependency, margin (the profit the vendor on sale of the product)
-
-Please see the above example of data types that should be returned.
-
 
 ### API Endpoint for new products.
 
