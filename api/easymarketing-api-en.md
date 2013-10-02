@@ -456,3 +456,38 @@ width/size of the like button if required on your own by modifying the html.
 For a full documentation on the like button refer to:
 
 	https://developers.facebook.com/docs/reference/plugins/like/
+
+### Further suggestions for the like button.
+
+We suggest adjusting the behavior of the like button slightly. This will
+result in a higher marketing impact for the vendor.
+
+
+**Case 1**
+If the vendor purchased a single product, replace the url in the like button
+to point to the URL of the product the user purchased. Example:
+
+User purchased only baby diapers.
+
+    http://foo.com/baby_diapers
+
+Adjust the like code:
+
+    <iframe src="//www.facebook.com/plugins/like.php?href=#{url_encoded_link_to_the_product}&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>
+
+Replace the `#{url_encoded_link_to_the_product}` with your url.
+
+With the above example that would result in:
+
+    <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffoo.com%2Fbaby_diapers%0A&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>
+
+You should make sure that the URL that is liked includes proper Facebook open
+graph tags. Without the tags the like will not include images in the users'
+friends steam. Refer to the following link for a full documentation:
+
+    http://ogp.me/
+
+**Case 2**
+User purchased many products, use the default code:
+
+    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGoogle&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>
