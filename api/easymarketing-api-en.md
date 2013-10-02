@@ -152,7 +152,7 @@ Products can also be empty.
 	    "products": [
 	    {
 	      "id": 0,
-	      "name": "Name of product",
+	      "name": "Levis 501",
 	      "categories": [
 	        0,
 	      	1,
@@ -161,7 +161,7 @@ Products can also be empty.
 	      ],
 	      "condition": "new",
 	      "availability": "in stock",
-	      "price": 24.50,
+	      "price": 74.50,
 	      "url": "http://example.com/products/1",
 	      "image_url": "http://example.com/product_images/1.jpeg",
 	      "shipping": [
@@ -171,9 +171,17 @@ Products can also be empty.
 				"price": 4.95
 			  }
 	      ],
+	      "variants": [
+		    {"color": "black", material: "cloth", "size": "XS", image_url: "http://..."},
+		    {"color": "black", material: "cloth", "size": "S",  image_url: "http://..."},
+		    {"color": "red",   material: "cloth", "size": "XS", image_url: "http://..."},
+		    {"color": "red",   material: "cloth", "size": "S",  image_url: "http://..."},
+		    {"color": "black", material: "jeans",   "size": "XS", image_url: "http://..."},
+		    {"color": "black", material: "jeans",   "size": "S",  image_url: "http://..."},
+		    {"color": "red",   material: "jeans",   "size": "XS", image_url: "http://..."},
+		    {"color": "red",   material: "jeans",   "size": "S",  image_url: "http://..."}
+		  ]
 	      "description": "Description of product",
-	      "specification": "specifications of product",
-	      "dependency": "dependencies of product",
 	      "margin": 0.56
 	    }
 	  ]
@@ -184,6 +192,8 @@ Products can also be empty.
 * The `id` of a product must be an `Integer` or `String`.
 
 * The `name` is the name of that Product. Type `String`.
+
+* The `description` attribute. Include only information relevant to the item. Describe its most relevant attributes, such as size, material, intended age range, special features, or other technical specs. Also include details about the item’s most visual attributes, such as shape, pattern, texture, and design, since we may use this text for finding your item. Type `String`.
 
 * The `categories` Array must be an `Array of Integer` or `Array of String`. These category ids must be out of the set of ids of the previously extracted categories. That way the product can be associated to it's actual categories.
 
@@ -221,13 +231,26 @@ Example:
 	}
 
 ##### Additional Attributes for the non Apparel/Custom Good Category
+Apparel categories: 'brand' is required. Additionally, for the categories listed below, you must submit at least 1 out of 'gtin' or 'mpn’:
+
+* 'Apparel & Accessories > Shoes'
+* 'Apparel & Accessories > Clothing Accesories > Sunglasses'
+* 'Apparel & Accessories > Handbags, Wallets & Cases > Handbags'
+* 'Apparel & Accessories > Jewelry > Watches'
+
+Media and software categories: 'gtin' is required
+All other categories: at least 2 of the following 3 identifiers are required: ‘brand’, ‘gtin’, and ‘mpn’.
+
+Exception: in categories where unique product identifiers are required but no such identifier exists for an item (e.g. custom goods), submit 'identifier exists' with a value of `false`.
+If you don't provide the required unique product identifiers, your items may be removed from Google Shopping. For all of your items, we recommend submitting all three attributes (‘brand’, ‘mpn’, and ‘gtin’) where available.
 
 * `gtin` are the Global Trade Item Numbers (GTINs). GTINs include UPC, EAN (in Europe), JAN (in Japan), and ISBN; Example: "8808992787426". Type `String`.
 * `mpn` Manufacturer Part Number (MPN). Example: "M2262D-PC". Type `String`.
 * `brand` The manufacturer's brand name. Example: "Sony". Type `String`.
+* `identifier_exists` In categories where unique product identifiers are required, merchants must submit the ‘identifier exists’ attribute with a value of false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand.
 
 ##### Additional Attributes for the Apparel Category
-* `shipping_weight` The shipping weight of this item. Example: "800 g". Type `String`
+* `shipping_weight` The shipping weight of this item. Example: "800 g". We accept only the following units of weight: lb, oz, g, kg. Type `String`
 * `gender`. Type `String`. The accepted values are:
   * `Male`
   * `Female`
@@ -240,7 +263,7 @@ Example:
 * Variants
 	* Show all possible variants of the same product.
 	* A single product may vary in 'color', 'material', 'pattern', and/or 'size'.
-	* The color attribute is always required.
+	* The `color` attribute is always required.
 	* Along with each variant, a respective image that visually depicts that variant product is required.
 
 **Examples**:
@@ -249,29 +272,44 @@ In this first example the pair of jeans comes in 2 colors and 2 sizes, each with
 	"variants": [
 	    {"color": "blue", "size": "XS", image_url: "http://..."},
 	    {"color": "blue", "size": "S",  image_url: "http://..."},
-	    {"color": "red", "size": "XS",  image_url: "http://..."},
+	    {"color": "red",  "size": "XS", image_url: "http://..."},
 	    {"color": "blue", "size": "S",  image_url: "http://..."}
 	]
 
 In this second example the pair of jeans comes in 2 colors, 2 sizes and 2 materials, each with an image url depicting that special variant of the jeans. 2 colors * 2 sizes * 2 materials equals 8 variations.
 
 	"variants": [
-	    {"color": "black", material: "cloth", "size": "XS", image_url: "http://..."},
-	    {"color": "black", material: "cloth", "size": "S",  image_url: "http://..."},
-	    {"color": "red",   material: "cloth", "size": "XS", image_url: "http://..."},
-	    {"color": "red",   material: "cloth", "size": "S",  image_url: "http://..."},
-	    {"color": "black", material: "jeans",   "size": "XS", image_url: "http://..."},
-	    {"color": "black", material: "jeans",   "size": "S",  image_url: "http://..."},
-	    {"color": "red",   material: "jeans",   "size": "XS", image_url: "http://..."},
-	    {"color": "red",   material: "jeans",   "size": "S",  image_url: "http://..."}
+	    {"color": "black", "material": "cloth",   "size": "XS", image_url: "http://..."},
+	    {"color": "black", "material": "cloth",   "size": "S",  image_url: "http://..."},
+	    {"color": "red",   "material": "cloth",   "size": "XS", image_url: "http://..."},
+	    {"color": "red",   "material": "cloth",   "size": "S",  image_url: "http://..."},
+	    {"color": "black", "material": "jeans",   "size": "XS", image_url: "http://..."},
+	    {"color": "black", "material": "jeans",   "size": "S",  image_url: "http://..."},
+	    {"color": "red",   "material": "jeans",   "size": "XS", image_url: "http://..."},
+	    {"color": "red",   "material": "jeans",   "size": "S",  image_url: "http://..."}
+	]
+
+You only need to send us data for variant attributes if your product varies by that specific attribute. So, if your shirts are all made of cotton, there’s no need to send the “Material” attribute. However, if your shirts were available in three colors and three sizes, you would send us nine separate line items, varying by color and size.
+
+If one item in a variant group includes the values “Blue” and “L” for the ‘color’ and ‘size’ attributes, all other items in the variant group must have values for ‘color’ and ‘size’, and each offer must have a different combination of values for those attributes.
+
+This is **not** allowed:
+
+	"variants": [
+	    {"color": "black", "material": "cloth", "size": "XS", image_url: "http://..."},
+	    {"color": "black", "size": "S",  image_url: "http://..."},
+	    {"color": "red",   "material": "cloth", image_url: "http://..."}
 	]
 
 
 
 ##### Additional Attributes for the Media Category
+* `gtin` is required
 
 
 #### Optional Attributes
+
+* `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `boolean`
 
 ### API Endpoint for new products.
 
