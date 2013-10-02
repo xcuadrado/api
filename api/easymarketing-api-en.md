@@ -55,11 +55,11 @@ The process is usually the following:
 For this the user has to enter several API endpoints in his easymarketing
 account. The following routes are mandatory and need to be provided.
 
-API Endpoint for categories. Returns the shops' categories.
+API Endpoint for categories. Returns the shop's categories.
 
 	http://example.com/easymarketing_api/categories
 
-API Endpoint for products. Returns the shops' products.
+API Endpoint for products. Returns the shop's products.
 
     http://example.com/easymarketing_api/products
 
@@ -70,6 +70,10 @@ API Endpoint for best selling products. Returns a list of best selling products.
 API Endpoint for new products. Returns a list of new products.
 
     http://example.com/easymarketing_api/new_products
+
+API Endpoint for a single product.
+
+	http://example.com/easymarketing_api/product_by_id
 
 Please refer below on how the those API endpoints are accessed by
 easymarketing. The sample url will be replaced with the url the user entered
@@ -102,7 +106,7 @@ parameters appeneded to the url.
 
 The response always includes the data identified through the parent_id. If
 there are no children for a category, children must be empty. This way
-EASYMARKETING can recursively fetch your category tree. The extraction starts with the root category id provided along with the API endpoints.
+EASYMARKETING can recursively fetch your category tree. The extraction starts with the root category id provided along with the API endpoints in the Easymarketing dashboard.
 
 The `children` array must contain the ids of the category's children. The type of these ids can be `Integer` or `String`. These ids will be used to recursively fetch all categories.
 
@@ -311,6 +315,24 @@ This is **not** allowed:
 
 * `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `boolean`
 
+
+### API Endpoint for a single product.
+
+Returns a single product by its ID.
+
+**Params**
+
+    id: Integer | String
+
+**Example**
+
+    http://example.com/easymarketing_api/product_by_id?id=1
+
+**Response**
+
+    JSON representation of a product. Like the example above.
+
+
 ### API Endpoint for new products.
 
 This returns the newest products since a given timestamp until today.
@@ -322,7 +344,7 @@ The product id's need to be returned. We will match this internally with our own
 
 **Example**
 
-    http://foo.com/easymarketing_api/new_products?limit=1&newer_than=1380646110
+    http://example.com/easymarketing_api/new_products?limit=1&newer_than=1380646110
 
 **Response**
 
@@ -348,7 +370,7 @@ We will internally match the product ids with our own database.
 
 **Example**
 
-    http://foo.com/easymarketing_api/best_products?limit=2&most_sold_since=1380646110
+    http://example.com/easymarketing_api/best_products?limit=2&most_sold_since=1380646110
 
 **Response**
 
