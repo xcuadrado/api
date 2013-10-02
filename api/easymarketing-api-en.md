@@ -422,6 +422,126 @@ We will internally match the product ids with our own database.
 
     }
 
+# Easymarketing Routes
+
+## User performance data (iFrame)
+
+Returns the user's data from his performance page. The performance page shows
+information about clicks, best advertisements and much more. You can embed it
+as an iframe.
+
+**Route**
+
+    GET /users/:website_url/performance?iframe=true
+
+**Params**
+
+    :website_url - the url of the vendor without http, required.
+
+**Example**
+
+    GET /users/foo.com/performance?iframe=true
+
+**Response**
+
+    <iframe src="..."></iframe>
+
+## User performance data (JSON)
+
+Returns the same data as the previous example, just in JSON format so you can
+build your own UI.
+
+**Route**
+
+    GET /users/:website_url/performance.json
+
+**Params**
+
+    :website_url - the url of the vendor without http, required.
+
+**Example**
+
+    GET /users/foo.com/performance.json
+
+**Response**
+
+    {
+      "website_url": "foo.com",
+      "total_keywords": 2033,
+      "impressions": 1554590,
+      "products_searched_per_month": 1502, // The total amount of searches the user had.
+      "time_Saved": 13 // The time Easymarketing saved the user by setting up automatic ads.
+      "clicks": 1500,
+      "conversion_rate": 2.43,
+      "cpc": 1.34,
+      "sales": 3645.00,
+      "daily_budget": 3.5,
+      "keywords": 1244,
+      "total_ads": 401,
+      "due_amount": 55, // The amount that will be invoiced. Equals the costs last month. It's the net value, will be modified by easymarketing margin and VAT
+      "revenue": 55.0, // The alltime turnover generated via easymarketing.
+      "average_conversion": 1.0,
+      "per_day": {
+        "2013-07-15": {
+          "clicks": 10,
+          "impressions": 1000,
+          "new_customers": 24.3,
+          "ads": 7,
+          "keywords": 126,
+          "costs": 7.8
+        },
+        "2013-07-16": {
+            "clicks": 10,
+            "impressions": 1000,
+            "new_customers": 24.3,
+            "ads": 7,
+            "keywords": 126,
+            "costs": 7.8
+        }
+      }
+    }
+
+## User Analysis page
+
+This returns the analysis page allowing the user to get a quick preview of his
+advertisements. It is returned as an iFrame. Does not require an auth token.
+
+**Route**
+
+    GET /analaysis/:website_url/?iframe=true
+
+**Params**
+
+    :website_url - the url of the vendor without http, required.
+
+**Example**
+
+    GET /analysis/foo.com/?iframe=true
+
+**Response**
+
+    <iframe src="..."></iframe>
+
+## Quick chart
+
+The quick chart can be found on the easymarketing homepage. It gives the user
+a quick gadget to play around with. Does not require an auth token.
+
+**Route**
+
+    GET /homepage_chart/:website_url/?iframe=true
+
+**Params**
+
+    :website_url - the url of the vendor without http, required.
+
+**Example**
+
+    GET /homepage_chart/foo.com/?iframe=true
+
+**Response**
+
+    <iframe src="..."></iframe>
 
 ## Conversion tracker
 
@@ -453,9 +573,9 @@ easymarketing extension in your system.
 	}
 
 
-## Facebook API integration
+## Facebook Likde badge
 
-The vendor can make use of the easymarketing facebook integration. The route
+The vendor can make use of the easymarketing facebook like badge. The route
 returns a like button code that should be integrated on the vendor's checkout
 success page. Triggering it will like the vendor's facebook page. The vendor
 provides the details to his facebook fanpage in the easymarketing system.
@@ -523,3 +643,46 @@ friends steam. Refer to the following link for a full documentation:
 User purchased many products, use the default code:
 
     <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGoogle&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>
+
+
+## Push a product for special Promotion to Easymarketing
+
+EASYMARKETING offers special promotions for individual products. We will
+publish them on the vendor's Facebook page. This route is synchronous products
+pushed to the route are instantly published on the vendor's facebook page.
+
+**Route**
+
+	POST users/:website_url/products/:product_id/facebook_status
+
+**Params**
+
+	:product_id = the product id of a specific product that should be promoted.
+	:website_url = the website url of the easymarketing user. Required.
+
+**Example**
+
+	POST users/foobar.com/products/1/facebook_status
+
+**Response**
+
+	Status: 200 if all went fine.
+
+	{
+    "website_url": "foobar.com",
+    "product_id": 1
+	}
+
+	Status: 202 if product not found in our database. We will attempt to extract it..
+
+	{
+    "website_url": "foobar.com",
+    "product_id": 1
+	}
+
+	Status: 400 if other errors occur and can not post to facebook.
+
+	{
+    "website_url": "foobar.com",
+    "product_id": 1
+	}
