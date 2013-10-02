@@ -260,7 +260,8 @@ If you don't provide the required unique product identifiers, your items may be 
 * `identifier_exists` In categories where unique product identifiers are required, merchants must submit the ‘identifier exists’ attribute with a value of false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand.
 
 ##### Additional Attributes for the Apparel Category
-* `shipping_weight` The shipping weight of this item. Example: "800 g". We accept only the following units of weight: lb, oz, g, kg. Type `String`
+* `shipping_weight` The shipping weight of this item. Only required if you have set up a shipping rule that is based on weight. Example: "800 g". We accept only the following units of weight: lb, oz, g, kg. Type `String`
+
 * `gender`. Type `String`. The accepted values are:
   * `Male`
   * `Female`
@@ -270,11 +271,27 @@ If you don't provide the required unique product identifiers, your items may be 
   * `Adult`
   * `Kids`
 
-* Variants
-	* Show all possible variants of the same product.
-	* A single product may vary in 'color', 'material', 'pattern', and/or 'size'.
-	* The `color` attribute is always required.
-	* Along with each variant, a respective image that visually depicts that variant product is required.
+##### Additional Attributes for the Media Category
+* `gtin` is required
+
+#### Variants
+
+* Type: `Array of Object`
+* Varients are required for the the following categories:
+	* 'Apparel & Accessories > Clothing'
+	* 'Apparel & Accessories > Shoes'
+	* 'Apparel & Accessories > Clothing Accessories > Sunglasses'
+	* 'Apparel & Accessories > Handbags, Wallets & Cases > Handbags'
+	* 'Apparel & Accessories > Jewelry > Watches'
+	* 'Media > Books'
+	* 'Media > DVDs & Movies'
+	* 'Media > Music'
+	* 'Software > Video Game Software' (Note: this category includes all computer games)
+
+* Show all possible variants of the same product.
+* A single product may vary in 'color', 'material', 'pattern', and/or 'size'.
+* The `color` attribute is always required.
+* Along with each variant, a respective image that visually depicts that variant product is required.
 
 **Examples**
 In this first example the pair of jeans comes in 2 colors and 2 sizes, each with an image url depicting that special variant of the jeans. 2 colors * 2 sizes equal 4 variations.
@@ -310,12 +327,6 @@ This is **not** allowed:
 	    {"color": "black", "size": "S",  image_url: "http://..."},
 	    {"color": "red",   "material": "cloth", image_url: "http://..."}
 	]
-
-
-
-##### Additional Attributes for the Media Category
-* `gtin` is required
-
 
 #### Optional Attributes
 
