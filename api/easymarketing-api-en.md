@@ -86,15 +86,15 @@ parameters appeneded to the url.
 
 	GET http://example.com/easymarketing_api/categories
 
-**Params:**
+**Params**
 
 	parent_id (Integer | String)
 
-**Example:**
+**Example**
 
 	curl http://example.com/easymarketing_api/categories?parent_id=1
 
-**Response:**
+**Response**
 
 	  {
 		"id": 1,
@@ -141,15 +141,19 @@ No duplicate products may be returned.
 If less than limit products are returned, we assume that the limit is reached.
 Products can also be empty.
 
-**Params:**
+**Route**
+
+	GET http://example.com/easymarketing_api/products
+
+**Params**
 
     offset (Integer), limit (Integer)
 
-**Example:**
+**Example**
 
     http://example.com/api/products?offset=0&limit=10
 
-**Response:**
+**Response**
 
 	{
 	  "offset": 0,
@@ -272,7 +276,7 @@ If you don't provide the required unique product identifiers, your items may be 
 	* The `color` attribute is always required.
 	* Along with each variant, a respective image that visually depicts that variant product is required.
 
-**Examples**:
+**Examples**
 In this first example the pair of jeans comes in 2 colors and 2 sizes, each with an image url depicting that special variant of the jeans. 2 colors * 2 sizes equal 4 variations.
 
 	"variants": [
@@ -322,6 +326,10 @@ This is **not** allowed:
 
 Returns a single product by its ID.
 
+**Route**
+
+    GET http://example.com/easymarketing_api/product_by_id
+
 **Params**
 
     id: Integer | String
@@ -339,6 +347,10 @@ Returns a single product by its ID.
 
 This returns the newest products since a given timestamp until today.
 The product id's need to be returned. We will match this internally with our own database.
+
+**Route**
+
+    GET http://example.com/easymarketing_api/new_products
 
 **Params**
 
@@ -365,6 +377,11 @@ The product id's need to be returned. We will match this internally with our own
 Returns an array of product ids, sales that were most sold since a given timeframe
 until today. It should be ordered descending with most sales as first product.
 We will internally match the product ids with our own database.
+
+**Route**
+
+    GET http://example.com/easymarketing_api/best_products
+
 
 **Params**
 
