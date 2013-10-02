@@ -2,7 +2,7 @@
 
 ## General
 
-This document describes the Easymarketing API version 1.
+This document describes the Easymarketing JSON API version 1.
 
 ### Routes
 
