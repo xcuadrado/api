@@ -224,6 +224,8 @@ Products can also be empty.
 
 * The `currency` attribute is of the type `String`. The international 3-letter code as defined by the ISO 4217 standard. Like "EUR" or "USD". Only one currency per product allowed.
 
+* The `margin` of this product. Type `Float`.
+
 * The `image_url` is of the type `String`.
 
 * The `shipping` attribute is an `Array of Object` and the Objects have the following attributes:
@@ -257,7 +259,7 @@ If you don't provide the required unique product identifiers, your items may be 
 * `gtin` are the Global Trade Item Numbers (GTINs). GTINs include UPC, EAN (in Europe), JAN (in Japan), and ISBN; Example: "8808992787426". Type `String`.
 * `mpn` Manufacturer Part Number (MPN). Example: "M2262D-PC". Type `String`.
 * `brand` The manufacturer's brand name. Example: "Sony". Type `String`.
-* `identifier_exists` In categories where unique product identifiers are required, merchants must submit the ‘identifier exists’ attribute with a value of false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand.
+* `identifier_exists` In categories where unique product identifiers are required, merchants must submit the ‘identifier exists’ attribute with a value of false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Type `Boolean`.
 
 ##### Additional Attributes for the Apparel Category
 * `shipping_weight` The shipping weight of this item. Only required if you have set up a shipping rule that is based on weight. Example: "800 g". We accept only the following units of weight: lb, oz, g, kg. Type `String`
@@ -330,7 +332,7 @@ This is **not** allowed:
 
 #### Optional Attributes
 
-* `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `boolean`
+* `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `Boolean`
 
 
 ### API Endpoint for a single product.
