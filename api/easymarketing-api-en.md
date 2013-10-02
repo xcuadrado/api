@@ -218,6 +218,8 @@ Products can also be empty.
 
 * The `price` attribute is of the type `Integer` or `Float`. The price includes taxes.
 
+* The `currency` attribute is of the type `String`. The international 3-letter code as defined by the ISO 4217 standard. Like "EUR" or "USD". Only one currency per product allowed.
+
 * The `image_url` is of the type `String`.
 
 * The `shipping` attribute is an `Array of Object` and the Objects have the following attributes:
