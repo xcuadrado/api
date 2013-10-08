@@ -190,7 +190,7 @@ Products can also be empty.
 		    {"color": "red",   material: "jeans",   "size": "S",  image_url: "http://..."}
 		  ]
 	      "description": "Description of product",
-	      "margin": 0.56
+	      "margin": 2
 	    }
 	  ]
 	}
@@ -224,7 +224,8 @@ Products can also be empty.
 
 * The `currency` attribute is of the type `String`. The international 3-letter code as defined by the ISO 4217 standard. Like "EUR" or "USD". Only one currency per product allowed.
 
-* The `margin` of this product. Type `Float`.
+* The `margin` of this product. How much does the shop make on every sale?
+  This is useful for us in order to be able to better promote specific products. Type `Float`.
 
 * The `image_url` is of the type `String`.
 
