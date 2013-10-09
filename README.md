@@ -1,8 +1,8 @@
-# Easymarketing API
+# EASYMARKETING API
 
 ## General
 
-This document describes the Easymarketing JSON API version 1.
+This document describes the EASYMARKETING JSON API version 1.
 
 ### Routes
 
@@ -39,7 +39,7 @@ If a route requires authentication and the caller fails to provide any credentia
 
 ## Extract Products/Categories from remote Shop
 
-Easymarketing can read a vendor's product/category data via a JSON Interface.
+EASYMARKETING can read a vendor's product/category data via a JSON Interface.
 The webservice is called when the easymarketing user selects to import data
 via an interface. The data is then used to generate ads in the client's
 adwords account. This interface is to be developed by the easymarketing
@@ -47,10 +47,10 @@ partners.
 
 The process is usually the following:
 
-* The user creates an Easymarketing account.
+* The user creates an EASYMARKETING account.
 * The user reads about a plugin developed for his shopsystem.
 * The user then installs this plugin per our requirements.
-* User proceeds and connects Easymarketing with his Shop via the plugin.
+* User proceeds and connects EASYMARKETING with his Shop via the plugin.
 
 For this the user has to enter several API endpoints in his easymarketing
 account. The following routes are mandatory and need to be provided.
@@ -106,7 +106,7 @@ parameters appeneded to the url.
 
 The response always includes the data identified through the parent_id. If
 there are no children for a category, children must be empty. This way
-EASYMARKETING can recursively fetch your category tree. The extraction starts with the root category id provided along with the API endpoints in the Easymarketing dashboard.
+EASYMARKETING can recursively fetch your category tree. The extraction starts with the root category id provided along with the API endpoints in the EASYMARKETING dashboard.
 
 The `children` array must contain the ids of the category's children. The type of these ids can be `Integer` or `String`. These ids will be used to recursively fetch all categories.
 
@@ -423,7 +423,7 @@ We will internally match the product ids with our own database.
 
     }
 
-# Easymarketing Routes
+# EASYMARKETING Routes
 
 ## User performance data (iFrame)
 
@@ -471,7 +471,7 @@ build your own UI.
       "total_keywords": 2033,
       "impressions": 1554590,
       "products_searched_per_month": 1502, // The total amount of searches the user had.
-      "time_Saved": 13 // The time Easymarketing saved the user by setting up automatic ads.
+      "time_Saved": 13 // The time EASYMARKETING saved the user by setting up automatic ads.
       "clicks": 1500,
       "conversion_rate": 2.43,
       "cpc": 1.34,
@@ -646,7 +646,7 @@ User purchased many products, use the default code:
     <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGoogle&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>
 
 
-## Push a product for special Promotion to Easymarketing
+## Push a product for special Promotion to EASYMARKETING
 
 EASYMARKETING offers special promotions for individual products. We will
 publish them on the vendor's Facebook page. This route is synchronous products
