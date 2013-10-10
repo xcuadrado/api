@@ -36,8 +36,7 @@ or **URL Parameters**:
 
 If a route requires authentication and the caller fails to provide any credentials a **HTTP 401 UNAUTHORIZED** status will be returned.
 
-
-## Extract Products/Categories from remote Shop
+## Extract Products/Categories From Remote Shop
 
 EASYMARKETING can read a vendor's product/category data via a JSON Interface.
 The webservice is called when the easymarketing user selects to import data
@@ -80,7 +79,14 @@ easymarketing. The sample url will be replaced with the url the user entered
 in his easymarketing account. What remains the same are the query string
 parameters appeneded to the url.
 
-### API Endpoint for categories
+### Google Shopping
+
+If you have setup the Google Shopping integration in the Easymarketing Dashboard there are certain additional properties that need to be provided in your shopsystems responses.
+Categories for example might need a `google_product_category`. 
+
+There are **only very few attributes required** for the basic "Category and Products API" and all attributes that are required by the Google Shopping option **are marked as such**.
+
+### API Endpoint for Categories
 
 **Route**
 
@@ -110,6 +116,8 @@ EASYMARKETING can recursively fetch your category tree. The extraction starts wi
 
 The `children` array must contain the ids of the category's children. The type of these ids can be `Integer` or `String`. These ids will be used to recursively fetch all categories.
 
+
+**[only required with Google Shopping option]**
 The `google_product_category` is an optional attribute. For items that fall into the categories listed below, the value you submit for ‘google product category’ must use the categories as they appear below or the more specific categories provided in [the full Google product taxonomy](https://support.google.com/merchants/answer/1705911). It is not sufficient to provide the highest-level categories, such as 'Apparel & Accessories' or ‘Media’, for these items.
 
 * 'Apparel & Accessories > Clothing'
@@ -123,7 +131,7 @@ The `google_product_category` is an optional attribute. For items that fall into
 * 'Software > Video Game Software' (Note: this category includes all computer games)
 
 
-### API Endpoint for products.
+### API Endpoint for Products.
 
 The route turns exactly or less than products that specified through the limit
 parameter. Products are returned in the range [offset..offset + limit).
@@ -153,7 +161,37 @@ Products can also be empty.
 
     http://example.com/api/products?offset=0&limit=10
 
-**Response**
+** Simple Response**
+
+	{
+	  "offset": 0,
+	    "products": [
+	    {
+	      "id": 0,
+	      "name": "Levis 501",
+	      "categories": [
+	        0,
+	      	1,
+	      	2,
+	      	3
+	      ],
+	      "price": 74.50,
+	      "url": "http://example.com/products/1",
+	      "colors": [
+	      	  "red",
+	      	  "black",
+	      	  "blue"
+	      ],
+	      "description": "Description of product",
+	      "specification": "specifications of product",
+		  "dependency": "dependencies of product",
+	      "margin": 0.56
+	    }
+	  ]
+	}
+
+
+**Response with Google Shopping option**
 
 	{
 	  "offset": 0,
@@ -195,15 +233,34 @@ Products can also be empty.
 	  ]
 	}
 
-#### Required Attributes
+#### Required Attributes without Google Shopping
 
 * The `id` of a product must be an `Integer` or `String`.
 
 * The `name` is the name of that Product. Type `String`.
 
+* The `categories` Array must be an `Array of Integer` or `Array of String`. These category ids must be out of the set of ids of the previously extracted categories. That way the product can be associated to it's actual categories.
+
+* The `price` attribute is of the type `Integer` or `Float`. The price includes taxes.
+
+* The `currency` attribute is of the type `String`. The international 3-letter code as defined by the ISO 4217 standard. Like "EUR" or "USD". Only one currency per product allowed.
+
+* The `url` attribute is of the type `String`. This is the URL of this product in your shopsystem. Example: `http://example.com/products/1`
+
+#### Optional Attributes without Google Shopping
+
 * The `description` attribute. Include only information relevant to the item. Describe its most relevant attributes, such as size, material, intended age range, special features, or other technical specs. Also include details about the item’s most visual attributes, such as shape, pattern, texture, and design, since we may use this text for finding your item. Type `String`.
 
-* The `categories` Array must be an `Array of Integer` or `Array of String`. These category ids must be out of the set of ids of the previously extracted categories. That way the product can be associated to it's actual categories.
+* The `colors` attribute is an `Array of String`. Each array element represents a color in which this product is available.
+
+* The `margin` of this product. How much does the shop make on every sale?
+  This is useful for us in order to be able to better promote specific products. Type `Float`.
+
+#### Required Attributes with Google Shopping
+
+* **All Attributes from the "Required Attributes without Google Shopping" section.**
+
+* The `description` attribute. Include only information relevant to the item. Describe its most relevant attributes, such as size, material, intended age range, special features, or other technical specs. Also include details about the item’s most visual attributes, such as shape, pattern, texture, and design, since we may use this text for finding your item. Type `String`.
 
 * For the `condition` attribute there are only three accepted `String` values:
 
@@ -219,13 +276,6 @@ Products can also be empty.
   * 'available for order': Include this value if it will take 4 or more business days to ship it to the customer. For example, if you don’t have it in your warehouse at the moment, but are sure that it will arrive in the next few days. For unreleased products, use the value 'preorder'
   * 'out of stock': You’re currently not accepting orders for this product. (Important tip: When your products are out of stock on your website, don't remove them from your data feed. Provide this value instead).
   * 'preorder': You are taking orders for this product, but it’s not yet been released.
-
-* The `price` attribute is of the type `Integer` or `Float`. The price includes taxes.
-
-* The `currency` attribute is of the type `String`. The international 3-letter code as defined by the ISO 4217 standard. Like "EUR" or "USD". Only one currency per product allowed.
-
-* The `margin` of this product. How much does the shop make on every sale?
-  This is useful for us in order to be able to better promote specific products. Type `Float`.
 
 * The `image_url` is of the type `String`.
 
@@ -277,7 +327,7 @@ If you don't provide the required unique product identifiers, your items may be 
 ##### Additional Attributes for the Media Category
 * `gtin` is required
 
-#### Variants
+##### Variants
 
 * Type: `Array of Object`
 * Varients are required for the the following categories:
@@ -331,7 +381,11 @@ This is **not** allowed:
 	    {"color": "red",   "material": "cloth", image_url: "http://..."}
 	]
 
-#### Optional Attributes
+
+#### Optional Attributes with Google Shopping
+
+* The `margin` of this product. How much does the shop make on every sale?
+  This is useful for us in order to be able to better promote specific products. Type `Float`.
 
 * `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `Boolean`
 
