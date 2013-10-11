@@ -189,7 +189,7 @@ Products can also be empty.
 
 * The `categories` Array must be an `Array of Integer` or `Array of String`. These category ids must be out of the set of ids of the previously extracted categories. That way the product can be associated to it's actual categories.
 
-* The `price` attribute is of the type `Integer` or `Float`. The price includes taxes.
+* The `price` attribute is of the type `Float`. The price includes taxes. **Not including any discounts**.
 
 * The `currency` attribute is of the type `String`. The international 3-letter code as defined by the ISO 4217 standard. Like "EUR" or "USD". Only one currency per product allowed.
 
@@ -205,7 +205,7 @@ Products can also be empty.
 * The `colors` attribute is an `Array of String`. Each array element represents a color in which this product is available.
 
 * The `margin` of this product. How much does the shop make on every sale?
-  This is useful for us in order to be able to better promote specific products. Type `Float`.
+  This is useful for us in order to better promote specific products. Type `Float`.
 
 * `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `Boolean`
 
@@ -230,7 +230,7 @@ Products can also be empty.
 
 	* `country` The country to which an item will be delivered (as an ISO 3166 country code). Example: "DE" for Germany. Type `String`.
 	* `service` **OPTIONAL** The service class or delivery speed. For example "Standard". Type `String`.
-	* `price` Fixed delivery price (including tax). For example 4.95. Type `Integer` or `Float`.
+	* `price` Fixed delivery price (including tax). For example 4.95. Type `Float`.
 
 Example:
 
@@ -243,7 +243,9 @@ Example:
 
 * `gtin` are the Global Trade Item Numbers (GTINs). GTINs include UPC, EAN (in Europe), JAN (in Japan), and ISBN; Example: "8808992787426". Type `String`.
 
+* `discount_absolute` shows that there is an absolute discount on a product. For example a 2.00 Euro discount. Type `Float`.
 
+* `discount_percentage` shows that there is a relative discount of x-percent of the original price. Type `Float`. For example `9.5` would equal a discount of 9.5% of the original product price.
 
 ### API Endpoint for a single product.
 
