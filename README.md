@@ -79,13 +79,6 @@ easymarketing. The sample url will be replaced with the url the user entered
 in his easymarketing account. What remains the same are the query string
 parameters appeneded to the url.
 
-### Google Shopping
-
-If you have setup the Google Shopping integration in the Easymarketing Dashboard there are certain additional properties that need to be provided in your shopsystems responses.
-Categories for example might need a `google_product_category`. 
-
-There are **only very few attributes required** for the basic "Category and Products API" and all attributes that are required by the Google Shopping option **are marked as such**.
-
 ### API Endpoint for Categories
 
 **Route**
@@ -146,7 +139,7 @@ Products can also be empty.
 
     http://example.com/api/products?offset=0&limit=10
 
-**Response with Google Shopping option**
+**Response**
 
 	{
 	  "offset": 0,
