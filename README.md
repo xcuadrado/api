@@ -490,7 +490,7 @@ easymarketing extension in your system.
 	}
 
 
-## Facebook Likde badge
+## Facebook Like badge
 
 The vendor can make use of the easymarketing facebook like badge. The route
 returns a like button code that should be integrated on the vendor's checkout
