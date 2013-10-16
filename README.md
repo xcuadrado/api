@@ -2,7 +2,19 @@
 
 ## General
 
-This document describes the EASYMARKETING JSON API version 1.
+This document is versioned using [Semantic Versioning](http://semver.org/). That means:
+
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+	MAJOR version when you make incompatible API changes,
+	MINOR version when you add functionality in a backwards-compatible manner, and
+	PATCH version when you make backwards-compatible bug fixes.
+
+The version of this document is **1.0.0**.
+
+This document describes the EASYMARKETING JSON API major version **1**.
+
+There is a changelog of what has changed in between versions at the very bottom of this document.
 
 ### Routes
 
@@ -18,9 +30,11 @@ An example use of this is the following request:
 
 	curl -H 'Accept: application/vnd.easymarketing.com; version=1' http://api.easymarketing.de/
 
-If you don't provide this version header the API will fallback to the default value which is always the most current API version. At the time of writing that is version 1 so currently there is no difference with or without providing the header. Should the API version get increased to the next number and your requests do not provide the version then you might experience unexpected results because the version increase might break the behaviour of certain routes.
+If you don't provide this version header the API will fallback to the default value which is always the most current API version. At the time of writing that is version 1 so currently there is no difference with or without providing the header. Should the API major version get increased to the next number and your requests do not provide the version then you might experience unexpected results because the version increase might break the behaviour of certain routes.
 
 ### Authentication
+
+#### Authenticating calls to the Easymarketing API
 
 The authentication of these API calls is handled via the HTTP `Authorization` Header or URL Params.
 
@@ -35,6 +49,18 @@ or **URL Parameters**:
 	curl 'http://api.easymarketing.de/?access_token=c576f0136149a2e2d9127b3901015545' -I
 
 If a route requires authentication and the caller fails to provide any credentials a **HTTP 401 UNAUTHORIZED** status will be returned.
+
+#### Authenticating calls from Easymarketing towards your API Endpoints
+
+The authentication of these API calls is handled via URL Params.
+
+The `shop_token` will be appended to each request URL so that your site can authenticate our API calls. This token can be set through the Easymarketing Dashboard, just like all the API endpoints described in the next sections. If you do not set a `shop_token` we will assume no authentication is required and all calls can be made without sending a `shop_token`.
+
+An example use of this is the following request:
+
+**URL Parameters**:
+
+	curl 'http://example.com/easymarketing_api/categories?parent_id=1;shop_token=1234567890abcdefghi' -I
 
 ## Extract Products/Categories From Remote Shop
 
@@ -79,13 +105,6 @@ easymarketing. The sample url will be replaced with the url the user entered
 in his easymarketing account. What remains the same are the query string
 parameters appeneded to the url.
 
-### Google Shopping
-
-If you have setup the Google Shopping integration in the Easymarketing Dashboard there are certain additional properties that need to be provided in your shopsystems responses.
-Categories for example might need a `google_product_category`. 
-
-There are **only very few attributes required** for the basic "Category and Products API" and all attributes that are required by the Google Shopping option **are marked as such**.
-
 ### API Endpoint for Categories
 
 **Route**
@@ -105,6 +124,7 @@ There are **only very few attributes required** for the basic "Category and Prod
 	  {
 		"id": 1,
 		"name": "Category One",
+		"url": "http://example.com/categories/1",
 		"children": [100, 101]
 	  }
 
@@ -112,6 +132,8 @@ There are **only very few attributes required** for the basic "Category and Prod
 The response always includes the data identified through the parent_id. If
 there are no children for a category, children must be empty. This way
 EASYMARKETING can recursively fetch your category tree. The extraction starts with the root category id provided along with the API endpoints in the EASYMARKETING dashboard.
+
+The `url` attribute is the URL of the Category's page that customers can visit.
 
 The `children` array must contain the ids of the category's children. The type of these ids can be `Integer` or `String`. These ids will be used to recursively fetch all categories.
 
@@ -146,7 +168,7 @@ Products can also be empty.
 
     http://example.com/api/products?offset=0&limit=10
 
-**Response with Google Shopping option**
+**Response**
 
 	{
 	  "offset": 0,
@@ -189,14 +211,13 @@ Products can also be empty.
 
 #### Required Attributes
 
-
 * The `id` of a product must be an `Integer` or `String`.
 
 * The `name` is the name of that Product. Type `String`.
 
 * The `categories` Array must be an `Array of Integer` or `Array of String`. These category ids must be out of the set of ids of the previously extracted categories. That way the product can be associated to it's actual categories.
 
-* The `price` attribute is of the type `Integer` or `Float`. The price includes taxes.
+* The `price` attribute is of the type `Float`. The price includes taxes. **Not including any discounts**.
 
 * The `currency` attribute is of the type `String`. The international 3-letter code as defined by the ISO 4217 standard. Like "EUR" or "USD". Only one currency per product allowed.
 
@@ -208,11 +229,12 @@ Products can also be empty.
 
 #### Optional Attributes
 
+* `google_category` is the Google Category from the [Google Product Taxonomy](https://www.google.com/basepages/producttype/taxonomy.en-US.txt). This attribute of the type `String`.
 
 * The `colors` attribute is an `Array of String`. Each array element represents a color in which this product is available.
 
 * The `margin` of this product. How much does the shop make on every sale?
-  This is useful for us in order to be able to better promote specific products. Type `Float`.
+  This is useful for us in order to better promote specific products. Type `Float`.
 
 * `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `Boolean`
 
@@ -237,7 +259,7 @@ Products can also be empty.
 
 	* `country` The country to which an item will be delivered (as an ISO 3166 country code). Example: "DE" for Germany. Type `String`.
 	* `service` **OPTIONAL** The service class or delivery speed. For example "Standard". Type `String`.
-	* `price` Fixed delivery price (including tax). For example 4.95. Type `Integer` or `Float`.
+	* `price` Fixed delivery price (including tax). For example 4.95. Type `Float`.
 
 Example:
 
@@ -250,7 +272,9 @@ Example:
 
 * `gtin` are the Global Trade Item Numbers (GTINs). GTINs include UPC, EAN (in Europe), JAN (in Japan), and ISBN; Example: "8808992787426". Type `String`.
 
+* `discount_absolute` shows that there is an absolute discount on a product. For example a 2.00 Euro discount. Type `Float`.
 
+* `discount_percentage` shows that there is a relative discount of x-percent of the original price. Type `Float`. For example `9.5` would equal a discount of 9.5% of the original product price.
 
 ### API Endpoint for a single product.
 
@@ -603,3 +627,12 @@ pushed to the route are instantly published on the vendor's facebook page.
     "website_url": "foobar.com",
     "product_id": 1
 	}
+
+
+## Changelog
+* Oct 14th 2013
+	* Added more information concerning the versioning of the API and this document
+	* Added "Authenticating calls from Easymarketing towards your API Endpoints" section
+	* Added `url` attribute to Categories
+	* Added `google_category`, `discount_absolute` and `discount_percentage` to Products
+	
