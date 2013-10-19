@@ -513,6 +513,33 @@ easymarketing extension in your system.
 	  "code": '<script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 982579417; var google_conversion_language = "en"; var google_conversion_format = "3"; var google_conversion_color = "ffffff"; var google_conversion_label = "cdl_CJe02gcQ2fHD1AM"; var google_conversion_value = 0; var google_remarketing_only = false; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/> </div> </noscript>'
 	}
 
+## Lead tracker
+
+This returns a tracking code that is to be integrated on the vendor's registration
+success page. This way easymarketing can track leads for you. This lead tracker should 
+be stored in your local DB for later use. This can be requested when the user proceeds 
+and installs the easymarketing extension in your system.
+
+**Route**
+
+        GET /lead_tracker/:website_url_of_vendor
+
+**Params**
+
+        :website_url = url of the vendor without http, required
+
+**Example**
+
+        GET /lead_tracker/google.de
+
+**Response**
+
+        Status: 200
+
+        {
+          "user_id": 1,
+          "code": '<script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 982579417; var google_conversion_language = "en"; var google_conversion_format = "3"; var google_conversion_color = "ffffff"; var google_conversion_label = "cdl_CJe02gcQ2fHD1AM"; var google_conversion_value = 0; var google_remarketing_only = false; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/> </div> </noscript>'
+        }
 
 ## Facebook Like badge
 
