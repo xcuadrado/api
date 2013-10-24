@@ -373,7 +373,7 @@ as an iframe.
 
 **Route**
 
-    GET /users/:website_url/performance?iframe=true
+    GET /users/:website_url/performance
 
 **Params**
 
@@ -381,7 +381,7 @@ as an iframe.
 
 **Example**
 
-    GET /users/foo.com/performance?iframe=true
+    GET /users/foo.com/performance
 
 **Response**
 
@@ -407,39 +407,20 @@ build your own UI.
 **Response**
 
     {
-      "website_url": "foo.com",
-      "total_keywords": 2033,
-      "impressions": 1554590,
-      "products_searched_per_month": 1502, // The total amount of searches the user had.
-      "time_Saved": 13 // The time EASYMARKETING saved the user by setting up automatic ads.
-      "clicks": 1500,
-      "conversion_rate": 2.43,
-      "cpc": 1.34,
-      "sales": 3645.00,
-      "daily_budget": 3.5,
-      "keywords": 1244,
-      "total_ads": 401,
-      "due_amount": 55, // The amount that will be invoiced. Equals the costs last month. It's the net value, will be modified by easymarketing margin and VAT
-      "revenue": 55.0, // The alltime turnover generated via easymarketing.
-      "average_conversion": 1.0,
-      "per_day": {
-        "2013-07-15": {
-          "clicks": 10,
-          "impressions": 1000,
-          "new_customers": 24.3,
-          "ads": 7,
-          "keywords": 126,
-          "costs": 7.8
-        },
-        "2013-07-16": {
-            "clicks": 10,
-            "impressions": 1000,
-            "new_customers": 24.3,
-            "ads": 7,
-            "keywords": 126,
-            "costs": 7.8
-        }
-      }
+      "clicks": 0,
+      "cr": 0,
+      "cpc": 0,
+      "sales": 0,
+      "impressions": 0,
+      "daily_budget": 5,
+      "keywords": 2375,
+      "ads": 1170,
+      "due_amount": 0,
+      "revenue": 0,
+      "time_saved": 320,
+      "average_conversion": 0.032,
+      "products_searched_per_month": 0,
+      "time_frame_impressions": 0
     }
 
 ## User Analysis page
@@ -449,7 +430,7 @@ advertisements. It is returned as an iFrame. Does not require an auth token.
 
 **Route**
 
-    GET /analaysis/:website_url/?iframe=true
+    GET /analaysis/:website_url
 
 **Params**
 
@@ -457,7 +438,7 @@ advertisements. It is returned as an iFrame. Does not require an auth token.
 
 **Example**
 
-    GET /analysis/foo.com/?iframe=true
+    GET /analysis/foo.com
 
 **Response**
 
@@ -470,7 +451,7 @@ a quick gadget to play around with. Does not require an auth token.
 
 **Route**
 
-    GET /homepage_chart/:website_url/?iframe=true
+    GET /homepage_chart/:website_url
 
 **Params**
 
@@ -478,7 +459,7 @@ a quick gadget to play around with. Does not require an auth token.
 
 **Example**
 
-    GET /homepage_chart/foo.com/?iframe=true
+    GET /homepage_chart/foo.com
 
 **Response**
 
@@ -494,7 +475,7 @@ easymarketing extension in your system.
 
 **Route**
 
-	GET /conversion_tracker/:website_url_of_vendor
+	GET /conversion_tracker/:website_url
 
 **Params**
 
@@ -522,7 +503,7 @@ and installs the easymarketing extension in your system.
 
 **Route**
 
-        GET /lead_tracker/:website_url_of_vendor
+        GET /lead_tracker/:website_url
 
 **Params**
 
@@ -564,11 +545,7 @@ provides the details to his facebook fanpage in the easymarketing system.
 
 	Status: 200
 
-	{
-	  "user_id": 1,
-	  "website_url": "easymarketing.de",
-	  "code": '<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGoogle&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>'
-	}
+    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGoogle&amp;width=450&amp;height=46&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId=270892269593470" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:46px;" allowTransparency="true"></iframe>
 
 Note this retuns the default facebook like button. You can optionally adjust
 width/size of the like button if required on your own by modifying the html.
