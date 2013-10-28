@@ -449,15 +449,11 @@ a quick gadget to play around with. Does not require an auth token.
 
 **Route**
 
-    GET /homepage_chart/:website_url
-
-**Params**
-
-    :website_url - the url of the vendor without http, required.
+    GET /homepage_chart
 
 **Example**
 
-    GET /homepage_chart/foo.com
+    GET /homepage_chart
 
 **Response**
 
