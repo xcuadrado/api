@@ -425,20 +425,18 @@ build your own UI.
 
 ## User Analysis page
 
-This returns the analysis page allowing the user to get a quick preview of his
-advertisements. It is returned as an iFrame. Does not require an auth token.
+This returns the analysis page in an iFrame. The analysis page contains a
+bunch of charts and data giving the user hints about how well his website
+could perform in AdWords. It does not require an auth token.
 
 **Route**
 
-    GET /analaysis/:website_url
+    GET /analaysis
 
-**Params**
-
-    :website_url - the url of the vendor without http, required.
 
 **Example**
 
-    GET /analysis/foo.com
+    GET /analysis
 
 **Response**
 
