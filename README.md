@@ -433,10 +433,16 @@ could perform in AdWords. It does not require an auth token.
 
     GET /analysis
 
+**Params**
+
+    website_url: the website url we will prefill (String)
+    partner_id: Your referral partner id (String)
+    height: Optional height of the iFrame (Integer)
+    width: Optional width of the iFrame (Integer)
 
 **Example**
 
-    GET /analysis
+    GET /analysis?website_url=foo.com&partner_id=fooshop&width=1200&height=15000
 
 **Response**
 
