@@ -431,7 +431,7 @@ could perform in AdWords. It does not require an auth token.
 
 **Route**
 
-    GET /analaysis
+    GET /analysis
 
 
 **Example**
