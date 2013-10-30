@@ -423,7 +423,7 @@ build your own UI.
       "time_frame_impressions": 0
     }
 
-## User Analysis page
+## Analysis page
 
 This returns the analysis page in an iFrame. The analysis page contains a
 bunch of charts and data giving the user hints about how well his website
