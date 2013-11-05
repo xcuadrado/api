@@ -377,11 +377,16 @@ as an iframe.
 
 **Params**
 
-    :website_url - the url of the vendor without http, required.
+    website_url: the url of the vendor without http, required.
+    compact: return a compact version of the performance page.
+    width: the width in px of the performance page. This only works if you request with the compact parameter.
+    height: the height in px of the performance page. This only works if you request with the compact parameter.
 
 **Example**
 
     GET /users/foo.com/performance
+
+    GET /users/foo.com/performance?compact=true&width=300&height=300
 
 **Response**
 
@@ -457,9 +462,16 @@ a quick gadget to play around with. Does not require an auth token.
 
     GET /homepage_chart
 
+**Params**
+
+    website_url: the website url we will prefill (String)
+    partner_id: Your referral partner id (String)
+
 **Example**
 
     GET /homepage_chart
+
+    GET /homepage_chart?website_url=foo.com&partner_id=fooshop
 
 **Response**
 
