@@ -447,7 +447,7 @@ could perform in AdWords. It does not require an auth token.
 
 **Example**
 
-    GET /analysis?website_url=foo.com&partner_id=fooshop&width=1200&height=15000
+    GET /analysis?website_url=foo.com&partner_id=fooshop&width=1200&height=1500
 
 **Response**
 
