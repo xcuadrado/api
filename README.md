@@ -456,26 +456,44 @@ could perform in AdWords. It does not require an auth token.
 ## Quick chart
 
 The quick chart can be found on the easymarketing homepage. It gives the user
-a quick gadget to play around with. Does not require an auth token.
-
-**Route**
-
-    GET /homepage_chart
+a quick gadget to play around with. Does not require an auth token. We return
+this chart as plain html. Just wrap an iFrame around the code.
 
 **Params**
 
     website_url: the website url we will prefill (String)
     partner_id: Your referral partner id (String)
+    version: The kind of chart you want to return. This determines the size of
+    the chart iFrame you would like to integrate. Default is large.
+
+`version=mini` Returns a `357px` * `167px` chart.
+`version=medium` Returns a `300px` * `250px` chart.
+`version=large` Returns a `336px` * `280px` chart.
+
+**Route**
+
+    GET /demo_chart
 
 **Example**
 
-    GET /homepage_chart
+    mini version:
+    <iframe style="background-color: transparent; border: 0px none transparent;
+      padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
+      frameborder="0" allowtransparency="true" width="357px" height="167px"
+      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
 
-    GET /homepage_chart?website_url=foo.com&partner_id=fooshop
+    medium version:
+    <iframe style="background-color: transparent; border: 0px none transparent;
+      padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
+      frameborder="0" allowtransparency="true" width="300px" height="250px"
+      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
 
-**Response**
+    large version:
+    <iframe style="background-color: transparent; border: 0px none transparent;
+      padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
+      frameborder="0" allowtransparency="true" width="336px" height="280px"
+      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
 
-    <iframe src="..."></iframe>
 
 ## Conversion tracker
 
