@@ -395,7 +395,8 @@ as an iframe.
 ## User performance data (JSON)
 
 Returns the same data as the previous example, just in JSON format so you can
-build your own UI.
+build your own UI. The `start_date` and `end_date` parameters can be omitted.
+You will receive all time data then.
 
 **Route**
 
@@ -404,6 +405,14 @@ build your own UI.
 **Params**
 
     :website_url - the url of the vendor without http, required.
+    :start_date - the start date that should be used to filter the data.
+      (Optional String) in the format: YYYY-MM-DD
+    :end_date - the end date that should be used limit the data.
+      (Optional String) in the format: YYYY-MM-DD
+    :group_by_day - Group the result data by day if there are start_date and
+      end_date params. This is optional and only works if the start_date and
+      end_date params are provided.
+
 
 **Example**
 
@@ -412,21 +421,55 @@ build your own UI.
 **Response**
 
     {
-      "clicks": 0,
-      "cr": 0,
-      "cpc": 0,
-      "sales": 0,
+      "clicks": 100,
       "impressions": 0,
-      "daily_budget": 5,
-      "keywords": 2375,
-      "ads": 1170,
-      "due_amount": 0,
-      "revenue": 0,
-      "time_saved": 320,
-      "average_conversion": 0.032,
-      "products_searched_per_month": 0,
-      "time_frame_impressions": 0
+      "click_through_rate": 0.12,
+      "costs": 0,
+      "average_cpc": 1.5,
+      "conversions": 0,
+      "currency": "EUR"
     }
+
+**Example**
+
+    GET /users/foo.com/performance.json?start_date=2013-02-15&end_date=2013-02-16&group_by_day=true
+
+**Response**
+
+    {
+      "2013-02-15":
+        {
+          "clicks": 100,
+          "impressions": 0,
+          "click_through_rate": 0.12,
+          "costs": 0,
+          "average_cpc": 1.5,
+          "conversions": 0,
+          "currency": "EUR"
+        },
+
+      "2013-02-16":
+        {
+          "clicks": 100,
+          "impressions": 0,
+          "click_through_rate": 0.12,
+          "costs": 0,
+          "average_cpc": 1.5,
+          "conversions": 0,
+          "currency": "EUR"
+        },
+    }
+
+
+**Response explanation**
+
+    clicks: The amount of clicks the user received. Integer.
+    impressions: The amount of impressions indicating how often the ad has been shown. Integer
+    click_through_rate: The percentage of how many impressions resulted in clicks. Float between 0 and 1.
+    costs: The net costs that were generated. This does not include VAT and EASYMARKETING margin. Float.
+    average_cpc: The average price each clicked cost. Float.
+    conversions: The amount of sales that have been generated. Integer.
+    currency: ISO code of the user's currency. String.
 
 ## Analysis page
 
