@@ -487,10 +487,14 @@ could perform in AdWords. It does not require an auth token.
     partner_id: Your referral partner id (String)
     height: Optional height of the iFrame (Integer)
     width: Optional width of the iFrame (Integer)
+    small: This will strip headers/footers and return an 800px iFrame. This
+      overrides the height and width parameter.
 
 **Example**
 
     GET /analysis?website_url=foo.com&partner_id=fooshop&width=1200&height=1500
+
+    GET /analysis?website_url=foo.com&partner_id=fooshop&small=true
 
 **Response**
 
