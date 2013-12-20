@@ -475,7 +475,9 @@ You will receive all time data then.
 
 This returns the analysis page in an iFrame. The analysis page contains a
 bunch of charts and data giving the user hints about how well his website
-could perform in AdWords. It does not require an auth token.
+could perform in AdWords. It does not require an auth token. It will look like this:
+
+![Sample Analysis page embedded](http://i.imgur.com/Q20W2oQ.png)
 
 **Route**
 
@@ -504,7 +506,9 @@ could perform in AdWords. It does not require an auth token.
 
 The quick chart can be found on the easymarketing homepage. It gives the user
 a quick gadget to play around with. Does not require an auth token. We return
-this chart as plain html. Just wrap an iFrame around the code.
+this chart as plain html. Just wrap an iFrame around the code. It will look like this:
+
+![Sample Quick chart](http://i.imgur.com/AsomKpb.png)
 
 **Params**
 
@@ -514,8 +518,9 @@ this chart as plain html. Just wrap an iFrame around the code.
     the chart iFrame you would like to integrate. Default is large.
 
 `version=mini` Returns a `357px` * `167px` chart.
-`version=medium` Returns a `300px` * `250px` chart.
-`version=large` Returns a `336px` * `280px` chart.
+`version=medium` Returns a `300px` * `167px` chart.
+`version=medium_two` Returns a `325px` * `175px` chart.
+`version=large` Returns a `300px` * `250px` chart.
 
 **Route**
 
