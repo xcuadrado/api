@@ -500,7 +500,7 @@ could perform in AdWords. It does not require an auth token. It will look like t
 
 **Response**
 
-    <iframe src="..."></iframe>
+    <iframe height="1200px" seamless="seamless" src="http://easymarketing.de/analysis/new?small=true" width="800px"></iframe>
 
 ## Quick chart
 
@@ -518,8 +518,11 @@ this chart as plain html. Just wrap an iFrame around the code. It will look like
     the chart iFrame you would like to integrate. Default is large.
 
 `version=mini` Returns a `357px` * `167px` chart.
+
 `version=medium` Returns a `300px` * `167px` chart.
+
 `version=medium_two` Returns a `325px` * `175px` chart.
+
 `version=large` Returns a `300px` * `250px` chart.
 
 **Route**
@@ -537,13 +540,19 @@ this chart as plain html. Just wrap an iFrame around the code. It will look like
     medium version:
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
-      frameborder="0" allowtransparency="true" width="300px" height="250px"
+      frameborder="0" allowtransparency="true" width="300px" height="167px"
+      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
+
+    medium version:
+    <iframe style="background-color: transparent; border: 0px none transparent;
+      padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
+      frameborder="0" allowtransparency="true" width="325px" height="175px"
       src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
 
     large version:
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
-      frameborder="0" allowtransparency="true" width="336px" height="280px"
+      frameborder="0" allowtransparency="true" width="300px" height="250px"
       src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
 
 
