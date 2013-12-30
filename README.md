@@ -541,19 +541,19 @@ this chart as plain html. Just wrap an iFrame around the code. It will look like
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
       frameborder="0" allowtransparency="true" width="300px" height="167px"
-      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
+      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=medium">
 
     medium version:
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
       frameborder="0" allowtransparency="true" width="325px" height="175px"
-      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
+      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=medium_two">
 
     large version:
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
       frameborder="0" allowtransparency="true" width="300px" height="250px"
-      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
+      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=large">
 
 
 ## Conversion tracker
