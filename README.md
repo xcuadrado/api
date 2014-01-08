@@ -378,14 +378,14 @@ as an iframe.
 **Params**
 
     website_url: the url of the vendor without http, required.
-    compact: return a compact version of the performance page.
-    width: the width in px of the performance page. This only works if you request with the compact parameter.
-    height: the height in px of the performance page. This only works if you request with the compact parameter.
+    compact: return a compact version of the performance page. This option
+      removes the header and the footer from the layout.
+    width: the width in px of the performance page.
+    height: the height in px of the performance page.
 
 **Example**
 
     GET /users/foo.com/performance
-
     GET /users/foo.com/performance?compact=true&width=300&height=300
 
 **Response**
