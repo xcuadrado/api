@@ -379,9 +379,9 @@ as an iframe.
 
     website_url: the url of the vendor without http, required.
     compact: return a compact version of the performance page. This option
-      removes the header and the footer from the layout.
-    width: the width in px of the performance page.
-    height: the height in px of the performance page.
+      removes the header and the footer from the layout. Default is false.
+    width: the width in px of the performance page. Default is 1040
+    height: the height in px of the performance page. Default is 1300
 
 **Example**
 
