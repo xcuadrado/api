@@ -170,42 +170,42 @@ Products can also be empty.
 
 **Response**
 
-	{
-	  "offset": 0,
-	    "products": [
-	    {
-	      "id": 0,
-	      "name": "Levis 501",
-	      "categories": [
-	        0,
-	      	1,
-	      	2,
-	      	3
-	      ],
-	      "condition": "new",
-	      "availability": "in stock",
-	      "price": 74.50,
-	      "url": "http://example.com/products/1",
-	      "image_url": "http://example.com/product_images/1.jpeg",
-	      "shipping": [
-	      	  {
-				"country": "DE",
-				"service": "Standard",
-				"price": 4.95
-			  }
-	      ],
-	      "colors": [
-	        "red",
-	        "black",
-	        "blue"
-	      ],
-	      "description": "Description of product",
-	      "margin": 2,
-	      "gtin": "123123123123",
-	      "adult": false
-	    }
-	  ]
-	}
+    {
+      "offset": 0,
+      "products": [
+        {
+          "id": 0,
+          "name": "Levis 501",
+          "categories": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "condition": "new",
+          "availability": "in stock",
+          "price": 74.50,
+          "url": "http://example.com/products/1",
+          "image_url": "http://example.com/product_images/1.jpeg",
+          "shipping": [
+              {
+          "country": "DE",
+          "service": "Standard",
+          "price": 4.95
+          }
+          ],
+          "colors": [
+            "red",
+            "black",
+            "blue"
+          ],
+          "description": "Description of product",
+          "margin": 2,
+          "gtin": "123123123123",
+          "adult": false
+        }
+      ]
+    }
 
 
 
