@@ -60,7 +60,7 @@ An example use of this is the following request:
 
 **URL Parameters**:
 
-	curl 'http://example.com/easymarketing_api/categories?parent_id=1;shop_token=1234567890abcdefghi' -I
+	curl 'https://example.com/easymarketing_api/categories?parent_id=1;shop_token=1234567890abcdefghi' -I
 
 ## Extract Products/Categories From Remote Shop
 
@@ -82,23 +82,23 @@ account. The following routes are mandatory and need to be provided.
 
 API Endpoint for categories. Returns the shop's categories.
 
-	http://example.com/easymarketing_api/categories
+	https://example.com/easymarketing_api/categories
 
 API Endpoint for products. Returns the shop's products.
 
-    http://example.com/easymarketing_api/products
+    https://example.com/easymarketing_api/products
 
 API Endpoint for best selling products. Returns a list of best selling products.
 
-    http://example.com/easymarketing_api/best_products
+    https://example.com/easymarketing_api/best_products
 
 API Endpoint for new products. Returns a list of new products.
 
-    http://example.com/easymarketing_api/new_products
+    https://example.com/easymarketing_api/new_products
 
 API Endpoint for a single product.
 
-	http://example.com/easymarketing_api/product_by_id
+	https://example.com/easymarketing_api/product_by_id
 
 Please refer below on how the those API endpoints are accessed by
 easymarketing. The sample url will be replaced with the url the user entered
@@ -109,7 +109,7 @@ parameters appeneded to the url.
 
 **Route**
 
-	GET http://example.com/easymarketing_api/categories
+	GET https://example.com/easymarketing_api/categories
 
 **Params**
 
@@ -117,7 +117,7 @@ parameters appeneded to the url.
 
 **Example**
 
-	curl http://example.com/easymarketing_api/categories?parent_id=1
+	curl https://example.com/easymarketing_api/categories?parent_id=1
 
 **Response**
 
@@ -158,7 +158,7 @@ Products can also be empty.
 
 **Route**
 
-	GET http://example.com/easymarketing_api/products
+	GET https://example.com/easymarketing_api/products
 
 **Params**
 
@@ -166,7 +166,7 @@ Products can also be empty.
 
 **Example**
 
-    http://example.com/api/products?offset=0&limit=10
+    https://example.com/api/products?offset=0&limit=10
 
 **Response**
 
@@ -282,7 +282,7 @@ Returns a single product by its ID.
 
 **Route**
 
-    GET http://example.com/easymarketing_api/product_by_id
+    GET https://example.com/easymarketing_api/product_by_id
 
 **Params**
 
@@ -290,7 +290,7 @@ Returns a single product by its ID.
 
 **Example**
 
-    http://example.com/easymarketing_api/product_by_id?id=1
+    https://example.com/easymarketing_api/product_by_id?id=1
 
 **Response**
 
@@ -304,7 +304,7 @@ The product id's need to be returned. We will match this internally with our own
 
 **Route**
 
-    GET http://example.com/easymarketing_api/new_products
+    GET https://example.com/easymarketing_api/new_products
 
 **Params**
 
@@ -312,7 +312,7 @@ The product id's need to be returned. We will match this internally with our own
 
 **Example**
 
-    http://example.com/easymarketing_api/new_products?limit=1&newer_than=1380646110
+    https://example.com/easymarketing_api/new_products?limit=1&newer_than=1380646110
 
 **Response**
 
@@ -334,7 +334,7 @@ We will internally match the product ids with our own database.
 
 **Route**
 
-    GET http://example.com/easymarketing_api/best_products
+    GET https://example.com/easymarketing_api/best_products
 
 
 **Params**
@@ -343,7 +343,7 @@ We will internally match the product ids with our own database.
 
 **Example**
 
-    http://example.com/easymarketing_api/best_products?limit=2&most_sold_since=1380646110
+    https://example.com/easymarketing_api/best_products?limit=2&most_sold_since=1380646110
 
 **Response**
 
