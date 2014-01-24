@@ -68,6 +68,9 @@ The process is usually the following:
 For this the user has to enter several API endpoints in his easymarketing
 account. The following routes are mandatory and need to be provided.
 
+Remark: We recommend the usage of https only if you have a valid certificate
+for your webserver installed.
+
 API Endpoint for categories. Returns the shop's categories.
 
 	https://example.com/easymarketing_api/categories
@@ -88,6 +91,11 @@ API Endpoint for a single product.
 
 	https://example.com/easymarketing_api/product_by_id
 
+API Endpoint for a API version.
+
+	https://example.com/easymarketing_api/api_version
+
+Please refer below on how the those API endpoints are accessed by
 Please refer below on how the those API endpoints are accessed by
 easymarketing. The sample url will be replaced with the url the user entered
 in his easymarketing account. What remains the same are the query string
@@ -361,6 +369,24 @@ We will internally match the product ids with our own database.
         }
       ]
 
+    }
+
+### API Endpoint for api version.
+
+This returns the api version used.
+
+**Route**
+
+    GET https://example.com/easymarketing_api/api_version
+
+**Example**
+
+    https://example.com/easymarketing_api/api_version?shop_token=1234567890abcdefghi
+
+**Response**
+
+    {
+      "api_version": "1.0.2"
     }
 
 # EASYMARKETING Routes
