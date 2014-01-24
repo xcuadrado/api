@@ -50,18 +50,6 @@ or **URL Parameters**:
 
 If a route requires authentication and the caller fails to provide any credentials a **HTTP 401 UNAUTHORIZED** status will be returned.
 
-#### Authenticating calls from Easymarketing towards your API Endpoints
-
-The authentication of these API calls is handled via URL Params.
-
-The `shop_token` will be appended to each request URL so that your site can authenticate our API calls. This token can be set through the Easymarketing Dashboard, just like all the API endpoints described in the next sections. If you do not set a `shop_token` we will assume no authentication is required and all calls can be made without sending a `shop_token`.
-
-An example use of this is the following request:
-
-**URL Parameters**:
-
-	curl 'https://example.com/easymarketing_api/categories?parent_id=1;shop_token=1234567890abcdefghi' -I
-
 ## Extract Products/Categories From Remote Shop
 
 EASYMARKETING can read a vendor's product/category data via a JSON Interface.
@@ -105,6 +93,18 @@ easymarketing. The sample url will be replaced with the url the user entered
 in his easymarketing account. What remains the same are the query string
 parameters appeneded to the url.
 
+#### Authenticating calls from Easymarketing towards your API Endpoints
+
+The authentication of these API calls is handled via URL Params.
+
+The `shop_token` will be appended to each request URL so that your site can authenticate our API calls. This token can be set through the Easymarketing Dashboard, just like all the API endpoints described in the next sections. If you do not set a `shop_token` we will assume no authentication is required and all calls can be made without sending a `shop_token`.
+
+An example use of this is the following request:
+
+**URL Parameters**:
+
+	curl 'https://example.com/easymarketing_api/categories?id=1&shop_token=1234567890abcdefghi' -I
+
 ### API Endpoint for Categories
 
 **Route**
@@ -113,11 +113,11 @@ parameters appeneded to the url.
 
 **Params**
 
-	parent_id (Integer | String)
+	id (Integer | String)
 
 **Example**
 
-	curl https://example.com/easymarketing_api/categories?parent_id=1
+	curl https://example.com/easymarketing_api/categories?id=1&shop_token=1234567890abcdefghi
 
 **Response**
 
@@ -129,7 +129,7 @@ parameters appeneded to the url.
 	  }
 
 
-The response always includes the data identified through the parent_id. If
+The response always includes the data identified through the id. If
 there are no children for a category, children must be empty. This way
 EASYMARKETING can recursively fetch your category tree. The extraction starts with the root category id provided along with the API endpoints in the EASYMARKETING dashboard.
 
@@ -166,7 +166,7 @@ Products can also be empty.
 
 **Example**
 
-    https://example.com/api/products?offset=0&limit=10
+    https://example.com/api/products?offset=0&limit=10&shop_token=1234567890abcdefghi
 
 **Response**
 
@@ -290,7 +290,7 @@ Returns a single product by its ID.
 
 **Example**
 
-    https://example.com/easymarketing_api/product_by_id?id=1
+    https://example.com/easymarketing_api/product_by_id?id=1&shop_token=1234567890abcdefghi
 
 **Response**
 
@@ -312,7 +312,7 @@ The product id's need to be returned. We will match this internally with our own
 
 **Example**
 
-    https://example.com/easymarketing_api/new_products?limit=1&newer_than=1380646110
+    https://example.com/easymarketing_api/new_products?limit=1&newer_than=1380646110&shop_token=1234567890abcdefghi
 
 **Response**
 
@@ -343,7 +343,7 @@ We will internally match the product ids with our own database.
 
 **Example**
 
-    https://example.com/easymarketing_api/best_products?limit=2&most_sold_since=1380646110
+    https://example.com/easymarketing_api/best_products?limit=2&most_sold_since=1380646110&shop_token=1234567890abcdefghi
 
 **Response**
 
