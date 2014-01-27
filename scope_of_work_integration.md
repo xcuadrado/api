@@ -404,11 +404,11 @@ Return the shopsystem the user has.
 
 **Route**
 
-    GET https://example.com/easymarketing_api/api_version
+    GET https://example.com/easymarketing_api/shopsystem_info
 
 **Example**
 
-    https://example.com/easymarketing_api/api_version?shop_token=1234567890abcdefghi
+    https://example.com/easymarketing_api/shopsystem_info?shop_token=1234567890abcdefghi
 
 **Response**
 
@@ -416,7 +416,7 @@ Return the shopsystem the user has.
       "shopsystem": "jtl",
       "shopsystem_human": "JTL Software",
       "shopsystem_version": "1.2"
-    }    
+    }
 
 
 
