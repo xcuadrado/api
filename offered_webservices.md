@@ -413,9 +413,17 @@ pushed to the route are instantly published on the vendor's facebook page.
 
 
 ## Changelog
-* Oct 14th 2013
-	* Added more information concerning the versioning of the API and this document
-	* Added "Authenticating calls from Easymarketing towards your API Endpoints" section
-	* Added `url` attribute to Categories
-	* Added `google_category`, `discount_absolute` and `discount_percentage` to Products
+
+Jan 27 2013 
+
+* Split documents in two.
+
+
+
+Oct 14th 2013
+
+* Added more information concerning the versioning of the API and this document
+* Added "Authenticating calls from Easymarketing towards your API Endpoints" section
+* Added `url` attribute to Categories
+* Added `google_category`, `discount_absolute` and `discount_percentage` to Products
 	
