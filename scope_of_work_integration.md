@@ -34,7 +34,7 @@ There is a changelog of what has changed in between versions at the very bottom 
 1. Build a UI in the shop backend, where the user can view his `shop_token`. This will be used for authorizing our requests to the webservice you will implement.
 2. Build a UI where the user can view his `endpoints`. The user needs to copy those routes and enter them in his EASYMARKETING account.
 3. Write detailed instructions for the user on your UIs. Make sure the UI is intuitive and easy to understand.
-4. Provide a UI for entering an `access_token`. The user needs to copy+paste this from his EASYMARKETING account.
+4. Provide a UI for entering an `access_token`. The user needs to copy+paste this from his EASYMARKETING account. This is used to access EASYMARKETING webservices like returning daily user statistics, or returning a conversion tracker to measure sales.
 
 ### Publish your code
 
