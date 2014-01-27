@@ -22,12 +22,13 @@ There is a changelog of what has changed in between versions at the very bottom 
 
 ### Build a webservice
 
-1. Setup a sample shopsystem, where you will deploy the the code. This shopsystem needs to stay online/live for as long as you work together with EASYMARKETING. Please note we can not do this, as we have no expertise with your shopsystem. We will only test the API calls make sure they are properly implemented.
-2. Integrate the specifications from this document.
-3. Test your setup via our developer account: User `dev@easymarketing.de`, Password: `dev@easymarketing.de`
-4. Make sure the API setup returns no errors.
-5. Wait for us to confirm the integrity of the webservice.
-6. We will then proceed and start a live implementation with one of our customers. Please suggest us a possible prospect of your choice.
+1. Setup a sample shopsystem, where you will deploy the the code. This shopsystem needs to stay online/live for as long as you work together with EASYMARKETING. Please note we can not do this, as we have no expertise with your shopsystem. We will test the API against this shopsystem.
+2. Send us instructions how we can log into the shopsystem. Provide us an admin user and admin password to do so.
+3. Integrate the specifications from this document.
+4. Test your setup via our developer account: User `dev@easymarketing.de`, Password: `dev@easymarketing.de`
+5. Make sure the API setup returns no errors.
+6. Wait for us to confirm the integrity of the webservice.
+7. We will then proceed and start a live implementation with one of our customers. Please suggest us a possible prospect of your choice.
 
 ### Build a UI in your backend
 
