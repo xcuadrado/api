@@ -301,6 +301,32 @@ and installs the easymarketing extension in your system.
 	        "img": '<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/>'
         }
 
+## Site verification
+
+**Route**
+
+	GET /site_verification/?website_url=xxx
+	
+**Params**
+
+	website_url: The website URL of the user. This will be used to find the user.
+	
+**Example**	
+
+	GET https://api.easymarketing.de/site_verification/?website_url=test.de?access_token=123
+	
+**Response**
+
+    {
+      website_url: test.de,
+      user_id: 123,
+      meta_tag: <meta name=\"google-site-verification\" content=\"bF6M-w27WdtgyuCEXSC293tMA1JfjeN6DcEF20Up8_w\" />,
+      html_content: google-site-verification: google646644efd7de5b2d.html,
+      html_file_name: google646644efd7de5b2d.html,
+    }
+
+
+
 ## Facebook Like badge
 
 The vendor can make use of the easymarketing facebook like badge. The route
