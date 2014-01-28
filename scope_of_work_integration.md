@@ -50,7 +50,7 @@ There is a changelog of what has changed in between versions at the very bottom 
 
 On top of creating a webservice we access, you also need to integrate some of our webservices.
 
-1. Integrate the [Conversion Tracker](offered_webservices)
+1. Integrate the [Conversion Tracker](offered_webservices.md)
 2. Integrate additional services if specified (must be added to scope of work)
 
 
