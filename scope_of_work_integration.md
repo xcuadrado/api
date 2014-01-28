@@ -101,6 +101,10 @@ API Endpoint for a single product.
 API Endpoint for a API version.
 
 	https://example.com/easymarketing_api/api_version
+	
+API Endpoint for Shopsystem Info
+
+	 https://example.com/easymarketing_api/shopsystem_info
 
 Please refer below on how the those API endpoints are accessed by
 easymarketing. The sample url will be replaced with the url the user entered
