@@ -329,15 +329,15 @@ and installs the easymarketing extension in your system.
 
 **Route**
 
-  POST /verify_website/?website_url=xxx
+    POST /verify_website/?website_url=xxx
 
 **Params**
 
-  website_url: The website URL of the user. This will be used to find the user.
+    website_url: The website URL of the user. This will be used to find the user.
 
 **Example**
 
-  POST https://api.easymarketing.de/confirm_website/?website_url=test.de?access_token=123
+    POST https://api.easymarketing.de/confirm_website/?website_url=test.de?access_token=123
 
 **Response**
 
