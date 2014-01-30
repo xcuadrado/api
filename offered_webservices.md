@@ -504,6 +504,53 @@ The `errors` array contains human readable error messages you can present in
 your view to the user. The `parser_errors` array contains errors useful for
 debugging.
 
+## Check extraction status
+
+Check the extraction status returning the number of products and categories extracted from the vendor's shop.
+
+**Route**
+
+    GET /extraction_status?website_url
+
+**Params**
+
+    website_url: the url of the vendor without http, required.
+
+**Example**
+
+    GET https://api.easymarketing.de/extraction_status?website_url=foo.com&access_token=c576f0136149a2e2d9127b3901015545
+
+**Response**
+
+
+If success:
+
+    Status: 200
+
+    {
+      num_categories: 10,
+      num_products: 3200,
+    }
+
+If access token is wrong:
+
+    Status: 401
+
+    {}
+
+
+If there is an error:
+
+    Status: 400
+
+    {
+      errors: ["Error"]
+    }
+
+
+The `errors` array contains human readable error messages you can present in
+your view to the user. 
+
 ## Facebook Like badge
 
 The vendor can make use of the easymarketing facebook like badge. The route
