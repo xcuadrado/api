@@ -32,26 +32,30 @@ There is a changelog of what has changed in between versions at the very bottom 
 
 ### Build a UI in your backend
 
-1. Build a UI in the shop backend, where the user can view his `shop_token`. This will be used for authorizing our requests to the webservice you will implement.
-2. Build a UI where the user can view his `endpoints`. The user needs to copy those routes and enter them in his EASYMARKETING account.
-3. Write detailed instructions for the user on your UIs. Make sure the UI is intuitive and easy to understand.
-4. Provide a UI for entering an `access_token`. The user needs to copy+paste this from his EASYMARKETING account. This is used to access EASYMARKETING webservices like returning daily user statistics, or returning a conversion tracker to measure sales.
-
-### Publish your code
-
-1. Please create a public repository on Github where you host the code. Make one of our developers admin.
-2. We will add a link on our website that will download the `master` branch of the repository as a .zip file.
-3. Publish all the code in your repository on Github.
-4. Write detailed instructions in the `README.md` file. This is shown when opening the repository.
-
-
+1. Generate and show a `shop_token` which will be used for authentication for the requests to the webservice you will implement specified below.
+2. Provide a UI for entering an `access_token`. The user needs to copy+paste this from his EASYMARKETING account. This is used to access EASYMARKETING webservices like returning daily user statistics, a conversion tracker to measure sales etc.
+3. Add possibility to [configure EASYMARKETING access](#integrate-the-easymarketing-api) to products and categories (`test_product_id`, `root category_id`, button to configure endpoints)
+4. Add UI to install/uninstall the [Google conversion tracker](#integrate-the-easymarketing-api) retrieved from EASYMARKETING API.
+5. Add UI to perfrom [google merchant center site verification](#integrate-the-easymarketing-api) with the EASYMARKETING API.
+6. Write detailed instructions for the user on your UIs and provide it to us. Make sure the UI is intuitive and easy to understand.
 
 ### Integrate the EASYMARKETING API
 
 On top of creating a webservice we access, you also need to integrate some of our webservices.
 
-1. Integrate the [Conversion Tracker](offered_webservices.md#conversion-tracker)
-2. Integrate additional services if specified (must be added to scope of work)
+1. Auto-configuration of [EASYMARKETING endpoints](offered_webservices.md#configure-the-users-api-endpoints)
+2. Integrate the [Conversion Tracker](offered_webservices.md#conversion-tracker)
+3. Integrate Google merchant center site verification by [providing the data](offered_webservices.md#get-google-site-verification-data) and [performing the check](offered_webservices.md#perform-google-site-verification)
+4. Integrate additional services if specified (must be added to scope of work)
+
+### Publish your code
+
+If the module is not provided as official plug-in from the shop vendor:
+
+1. Please create a public repository on Github where you host the code. Make one of our developers admin.
+2. We will add a link on our website that will download the `master` branch of the repository as a .zip file.
+3. Publish all the code in your repository on Github.
+4. Write detailed instructions in the `README.md` file. This is shown when opening the repository.
 
 
 ---------------------------------------
@@ -98,11 +102,7 @@ API Endpoint for a single product.
 
 	https://example.com/easymarketing_api/product_by_id
 
-API Endpoint for a API version.
-
-	https://example.com/easymarketing_api/api_version
-	
-API Endpoint for Shopsystem Info
+API Endpoint for Shopsystem Info and api version
 
 	 https://example.com/easymarketing_api/shopsystem_info
 
@@ -383,28 +383,9 @@ We will internally match the product ids with our own database.
 
     }
 
-### API Endpoint for api version.
-
-This returns the api version used.
-
-**Route**
-
-    GET https://example.com/easymarketing_api/api_version
-
-**Example**
-
-    https://example.com/easymarketing_api/api_version?shop_token=1234567890abcdefghi
-
-**Response**
-
-    {
-      "api_version": "1.0.2"
-    }
-
-    
 ### API Endpoint for returning the shopsystem.
 
-Return the shopsystem the user has.
+Return the shopsystem the user has and the API version installed (important for support!).
 
 **Route**
 
@@ -420,6 +401,7 @@ Return the shopsystem the user has.
       "shopsystem": "jtl",
       "shopsystem_human": "JTL Software",
       "shopsystem_version": "1.2"
+      "api_version": "1.3.5"
     }
 
 
