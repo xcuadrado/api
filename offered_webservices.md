@@ -20,7 +20,7 @@ There is a changelog of what has changed in between versions at the very bottom 
 
 All requests go to
 
-	http://api.easymarketing.de/
+	https://api.easymarketing.de/
 
 ### Versioning
 
@@ -28,7 +28,7 @@ The versioning of all API routes is handled via the HTTP `Accept` Header.
 
 An example use of this is the following request:
 
-	curl -H 'Accept: application/vnd.easymarketing.com; version=1' http://api.easymarketing.de/
+	curl -H 'Accept: application/vnd.easymarketing.com; version=1' https://api.easymarketing.de/
 
 If you don't provide this version header the API will fallback to the default value which is always the most current API version. At the time of writing that is version 1 so currently there is no difference with or without providing the header. Should the API major version get increased to the next number and your requests do not provide the version then you might experience unexpected results because the version increase might break the behaviour of certain routes.
 
@@ -42,11 +42,11 @@ An example use of this is the following request:
 
 **Authorization header**:
 
-	curl http://api.easymarketing.de/ -H 'Authorization: Token token="c576f0136149a2e2d9127b3901015545"'
+	curl https://api.easymarketing.de/ -H 'Authorization: Token token="c576f0136149a2e2d9127b3901015545"'
 
 or **URL Parameters**:
 
-	curl 'http://api.easymarketing.de/?access_token=c576f0136149a2e2d9127b3901015545' -I
+	curl 'https://api.easymarketing.de/?access_token=c576f0136149a2e2d9127b3901015545' -I
 
 If a route requires authentication and the caller fails to provide any credentials a **HTTP 401 UNAUTHORIZED** status will be returned.
 
@@ -59,7 +59,8 @@ as an iframe.
 
 **Route**
 
-    GET /users/:website_url/performance
+    GET /users/performance?website_url=URL
+    (GET /users/:website_url/performance deprecated)
 
 **Params**
 
@@ -71,8 +72,8 @@ as an iframe.
 
 **Example**
 
-    GET /users/foo.com/performance
-    GET /users/foo.com/performance?compact=true&width=300&height=300
+    https://api.easymarketing.de/users/performance?website_url=foo.com&access_token=c576f0136149a2e2d9127b3901015545
+    https://api.easymarketing.de/users/performance?website_url=foo.com&compact=true&width=300&height=300&access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
@@ -86,7 +87,8 @@ You will receive all time data then.
 
 **Route**
 
-    GET /users/:website_url/performance.json
+    GET /users/performance.json?website_url=URL
+    (GET /users/:website_url/performance.json deprecated)
 
 **Params**
 
@@ -102,7 +104,7 @@ You will receive all time data then.
 
 **Example**
 
-    GET /users/foo.com/performance.json
+    GET /users/foo.com/performance.json?website_url=foo.com
 
 **Response**
 
@@ -118,7 +120,7 @@ You will receive all time data then.
 
 **Example**
 
-    GET /users/foo.com/performance.json?start_date=2013-02-15&end_date=2013-02-16&group_by_day=true
+    https://api.easymarketing.de/users/foo.com/performance.json?start_date=2013-02-15&end_date=2013-02-16&group_by_day=true&access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
@@ -180,13 +182,13 @@ could perform in AdWords. It does not require an auth token. It will look like t
 
 **Example**
 
-    GET /analysis?website_url=foo.com&partner_id=fooshop&width=1200&height=1500
+    https://api.easymarketing.de/analysis?website_url=foo.com&partner_id=fooshop&width=1200&height=1500&access_token=c576f0136149a2e2d9127b3901015545
 
-    GET /analysis?website_url=foo.com&partner_id=fooshop&small=true
+    https://api.easymarketing.de/analysis?website_url=foo.com&partner_id=fooshop&small=true&access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
-    <iframe height="1200px" seamless="seamless" src="http://easymarketing.de/analysis/new?small=true" width="800px"></iframe>
+    <iframe height="1200px" seamless="seamless" src="https://easymarketing.de/analysis/new?small=true" width="800px"></iframe>
 
 ## Quick chart
 
@@ -221,25 +223,25 @@ this chart as plain html. Just wrap an iFrame around the code. It will look like
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
       frameborder="0" allowtransparency="true" width="357px" height="167px"
-      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
+      src="https://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=mini">
 
     medium version:
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
       frameborder="0" allowtransparency="true" width="300px" height="167px"
-      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=medium">
+      src="https://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=medium">
 
     medium version:
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
       frameborder="0" allowtransparency="true" width="325px" height="175px"
-      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=medium_two">
+      src="https://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=medium_two">
 
     large version:
     <iframe style="background-color: transparent; border: 0px none transparent;
       padding: 0px; overflow: hidden;" seamless="seamless" scrolling="no"
       frameborder="0" allowtransparency="true" width="300px" height="250px"
-      src="http://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=large">
+      src="https://api.easymarketing.de/demo_chart?website_url=easymarketing.de&partner_id=foo&version=large">
 
 
 ## Conversion tracker
@@ -252,7 +254,8 @@ easymarketing extension in your system.
 
 **Route**
 
-	GET /conversion_tracker/:website_url
+	GET /conversion_tracker?&website_url=URL
+	(GET /conversion_tracker/:website_url deprecated)
 
 **Params**
 
@@ -260,7 +263,7 @@ easymarketing extension in your system.
 
 **Example**
 
-	GET /conversion_tracker/google.de
+	https://api.easymarketing.de/conversion_tracker?website_url=foo.com&access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
@@ -281,7 +284,8 @@ and installs the easymarketing extension in your system.
 
 **Route**
 
-        GET /lead_tracker/:website_url
+        GET /lead_tracker?website_url=URL
+        (GET /lead_tracker/:website_url deprecated)
 
 **Params**
 
@@ -289,7 +293,7 @@ and installs the easymarketing extension in your system.
 
 **Example**
 
-        GET /lead_tracker/google.de
+        https://api.easymarketing.de/lead_tracker?website_url=google.de&access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
@@ -301,44 +305,25 @@ and installs the easymarketing extension in your system.
 	        "img": '<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/>'
         }
 
-## Request Site verification
+## Get google site verification data
+
+Retrieve the data required for the google site verification. The returned data must be placed either as html-page in the
+root directory of the shop (using html_content and html_file_name) or the data meta-tag can be added to the start page
+of the shop instead.
+
 
 **Route**
 
-	GET /site_verification/?website_url=xxx
+	GET /site_verification_data?website_url
 	
 **Params**
 
-	website_url: The website URL of the user. This will be used to find the user.
+	:website_url = url of the vendor without http, required
 	
 **Example**	
 
-	GET https://api.easymarketing.de/site_verification/?website_url=test.de?access_token=123
+	https://api.easymarketing.de/site_verification_data?access_token=123&website_url=foo.com
 	
-**Response**
-
-    {
-      website_url: test.de,
-      user_id: 123,
-      meta_tag: <meta name=\"google-site-verification\" content=\"bF6M-w27WdtgyuCEXSC293tMA1JfjeN6DcEF20Up8_w\" />,
-      html_content: google-site-verification: google646644efd7de5b2d.html,
-      html_file_name: google646644efd7de5b2d.html,
-    }
-
-## Verify the website is properly configured
-
-**Route**
-
-    POST /verify_website/?website_url=xxx
-
-**Params**
-
-    website_url: The website URL of the user. This will be used to find the user.
-
-**Example**
-
-    POST https://api.easymarketing.de/confirm_website/?website_url=test.de?access_token=123
-
 **Response**
 
 If success:
@@ -346,22 +331,178 @@ If success:
     Status: 200
 
     {
-      website_url: test.de,
       user_id: 123,
-      errors: []
+      website_url: foo.com,
+      meta_tag: <meta name=\"google-site-verification\" content=\"bF6M-w27WdtgyuCEXSC293tMA1JfjeN6DcEF20Up8_w\" />,
+      html_content: google-site-verification: google646644efd7de5b2d.html,
+      html_file_name: google646644efd7de5b2d.html,
     }
+
+If access token is wrong:
+
+    Status: 401
+
+    {}
+
 
 If there is an error:
 
     Status: 400
 
     {
-      website_url: test.de,
-      user_id: 123,
-      errors: ["Could not verify ownership of website", "API Check setup did not complete", "No categories found", "No products found"]
+      errors: ["Error messages"]
+    }
+
+## Perform google site verification
+
+Executes the site verification. This should be done after the [site verification page](#get-google-site-verification-data) has been installed.
+It must be specified if the verification should be performed by requesting the html-page or using the
+meta-tag from the start page.
+
+**Route**
+
+	POST /perform_site_verification?website_url&verification_type
+
+**Params**
+
+	:website_url = url of the vendor without http, required
+	:verification_type = HTML | META
+
+**Example**
+
+	https://api.easymarketing.de/perform_site_verification?website_url=foo.com&verification_type=HTML&access_token=123
+
+**Response**
+
+If success:
+
+    Status: 200
+
+    {}
+    
+If access token is wrong:
+
+    Status: 401
+
+    {}
+
+
+If there is an error:
+
+    Status: 400
+
+    {
+      errors: ["Error message"]
     }
 
 
+## Configure the user's API endpoints
+
+This will configure the user's API endpoints. You need to pass the
+proper configurations to us as parameters. We will then check if the website is properly claimed by
+the meta tag/html code. We will also proceed and test whether we can extract
+data from your API. This request can take some time as several internal
+services are called. It would be good to implement a loading animation to give
+your user feedback.
+
+See: [API Endpoints](https://github.com/EASYMARKETING/api/blob/master/scope_of_work_integration.md#extract-productscategories-from-remote-shop)
+
+**Route**
+
+    POST /configure_endpoints
+
+**Params**
+
+    {
+      website_url: Website URL of the user. Must be the subdomain without http:// or https:// in front. Can only be a top level domain, directories are not allowed. (String)
+      access_token: The user's access token (String)
+      shop_token: The token that is used by our crawler to access your webservices (String)
+      categories_api_endpoint: The URL to access the categories API endpoint (String)
+      shop_category_root_id: The ID of the uppermost category. (String)
+      products_api_endpoint: The URL of the API endpoint for products (String)
+      product_by_id_api_endpoint: The URL of the API endpoint used to access your products (String)
+      best_products_api_endpoint: The URL of the API endpoint for best products (String)
+      new_products_api_endpoint: The URL of the API endpoint for new products (String)
+      shopsystem_info_api_endpoint: The URL of the API endpoint for information about the shopsystem (String)
+      api_setup_test_single_product_id: The ID of a product in the shopsystem that is used for testing (String)
+    }
+
+**Example**
+
+    POST https://api.easymarketing.de/configure_endpoints?access_token=c576f0136149a2e2d9127b3901015545
+
+    {
+      website_url: "example.com",
+      access_token: "123",
+      shop_token: "123shoptoken123"
+      categories_api_endpoint: "https://example.com/easymarketing_api/categories",
+      shop_category_root_id: "1",
+      products_api_endpoint: "https://example.com/easymarketing_api/products",
+      product_by_id_api_endpoint: "https://example.com/easymarketing_api/product_by_id",
+      best_products_api_endpoint: "https://example.com/easymarketing_api/best_products",
+      new_products_api_endpoint: "https://example.com/easymarketing_api/new_products",
+      shopsystem_info_api_endpoint: "https://example.com/easymarketing_api/shopsystem_info",
+      api_setup_test_single_product_id: "10"
+    }
+
+**Response**
+
+
+If success:
+
+    Status: 200
+
+    {
+      website_url: "example.com",
+      access_token: "123",
+      shop_token: "123shoptoken123"
+      categories_api_endpoint: "https://example.com/easymarketing_api/categories",
+      shop_category_root_id: "1",
+      products_api_endpoint: "https://example.com/easymarketing_api/products",
+      product_by_id_api_endpoint: "https://example.com/easymarketing_api/product_by_id",
+      best_products_api_endpoint: "https://example.com/easymarketing_api/best_products",
+      new_products_api_endpoint: "https://example.com/easymarketing_api/new_products",
+      shopsystem_info_api_endpoint: "https://example.com/easymarketing_api/shopsystem_info",
+      api_setup_test_single_product_id: "10",
+      api_properly_setup: true,
+      website_claimed_by_google: true,
+      errors: [],
+      parser_errors: []
+    }
+
+If access token is wrong:
+
+    Status: 401
+
+    {}
+
+
+If there is an error:
+
+    Status: 400
+
+    {
+      website_url: "example.com",
+      access_token: "123",
+      shop_token: "123shoptoken123"
+      categories_api_endpoint: "https://example.com/easymarketing_api/categories",
+      shop_category_root_id: "1",
+      products_api_endpoint: "https://example.com/easymarketing_api/products",
+      product_by_id_api_endpoint: "https://example.com/easymarketing_api/product_by_id",
+      best_products_api_endpoint: "https://example.com/easymarketing_api/best_products",
+      new_products_api_endpoint: "https://example.com/easymarketing_api/new_products",
+      shopsystem_info_api_endpoint: "https://example.com/easymarketing_api/shopsystem_info",
+      api_setup_test_single_product_id: "10",
+      website_claimed_by_google: false,
+      api_properly_setup: false,
+      errors: ["Could not verify ownership of website", "API Check setup did not complete", "No categories found", "No products found", "API Endpoints are missing"]
+      parser_errors: ["id must be of type string", "category_id is null"]
+    }
+
+
+The `errors` array contains human readable error messages you can present in
+your view to the user. The `parser_errors` array contains errors useful for
+debugging.
 
 ## Facebook Like badge
 
@@ -372,7 +513,8 @@ provides the details to his facebook fanpage in the easymarketing system.
 
 **Route**
 
-	GET /facebook_badge/:website_url
+	GET /facebook_badge?website_url=URL
+	(GET /facebook_badge/:website_url deprecated)
 
 **Params**
 
@@ -380,7 +522,7 @@ provides the details to his facebook fanpage in the easymarketing system.
 
 **Example**
 
-	GET /facebook_badge/easymarketing.de
+	https://api.easymarketing.de/facebook_badge?website_url=easymarketing.de?access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
@@ -439,7 +581,8 @@ pushed to the route are instantly published on the vendor's facebook page.
 
 **Route**
 
-	POST users/:website_url/products/:product_id/facebook_status
+	POST users/facebook_status?website_url=URL&product_id=PRODUCT_ID
+	(POST users/:website_url/products/:product_id/facebook_status deprecated)
 
 **Params**
 
@@ -448,7 +591,7 @@ pushed to the route are instantly published on the vendor's facebook page.
 
 **Example**
 
-	POST users/foobar.com/products/1/facebook_status
+	POST https://api.easymarketing.de/users/foobar.com/products/1/facebook_status?access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
