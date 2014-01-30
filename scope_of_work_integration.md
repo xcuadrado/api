@@ -44,9 +44,10 @@ There is a changelog of what has changed in between versions at the very bottom 
 On top of creating a webservice we access, you also need to integrate some of our webservices.
 
 1. Auto-configuration of [EASYMARKETING endpoints](offered_webservices.md#configure-the-users-api-endpoints)
-2. Integrate the [Conversion Tracker](offered_webservices.md#conversion-tracker)
-3. Integrate Google merchant center site verification by [providing the data](offered_webservices.md#get-google-site-verification-data) and [performing the check](offered_webservices.md#perform-google-site-verification)
-4. Integrate additional services if specified (must be added to scope of work)
+2. Possibility to show the [extraction status](offered_webservices.md#check-extraction-status)
+3. Integrate the [Conversion Tracker](offered_webservices.md#conversion-tracker)
+4. Integrate Google merchant center site verification by [providing the data](offered_webservices.md#get-google-site-verification-data) and [performing the check](offered_webservices.md#perform-google-site-verification)
+5. Integrate additional services if specified (must be added to scope of work)
 
 ### Publish your code
 
