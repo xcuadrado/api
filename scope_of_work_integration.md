@@ -371,7 +371,7 @@ We will internally match the product ids with our own database.
 
     {
       "limit": 2,
-      "most_sold_since": 1,
+      "most_sold_since": 1380646110,
       "products": [
         {
           "id": 1,
