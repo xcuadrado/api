@@ -329,7 +329,8 @@ The product id's need to be returned. We will match this internally with our own
 
 **Params**
 
-    limit: Integer, newer_than: Integer(UNIX timestamp)
+    limit: The amount of products to be returned. Integer
+    newer_than: Products should be newer than this timestamp. Integer(UNIX timestamp)
 
 **Example**
 
@@ -338,8 +339,8 @@ The product id's need to be returned. We will match this internally with our own
 **Response**
 
     {
-      "time": 1380646110,
-      "newer_than": 1,
+      "limit": 1,
+      "newer_than": 1380646110,
       "products": [
         // Please refer to the API Endpoint for products for the exact JSON
         // that is returnd
