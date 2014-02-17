@@ -506,7 +506,7 @@ debugging.
 
 ## Check extraction status
 
-Check the extraction status returning the number of products and categories extracted from the vendor's shop.
+Check the extraction status returning the number of products and categories extracted from the vendor's shop. It also shows when we last scheduled the company for parsing products and categories.
 
 **Route**
 
@@ -530,6 +530,7 @@ If success:
     {
       num_categories: 10,
       num_products: 3200,
+      api_properly_setup_at: 1392637222 (UNIX timestamp),
     }
 
 If access token is wrong:
