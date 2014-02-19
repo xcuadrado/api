@@ -252,11 +252,11 @@ Adwords campaign. This conversion tracker should be stored in your local DB
 for later use. This can be requested when the user proceeds and installs the
 easymarketing extension in your system.
 
-The conversion tracker code should be adjusted for each contains a line:
+The conversion tracker code should be adjusted for each checkout. It contains the following line:
 
 `var google_conversion_value = 0;`
 
-The value `0` should be replaced by the value of the shopping-cart, so that the value
+The value `0` should be replaced by a regexp with the value of the shopping-cart, so that the value
 of the deal can be tracked.
 
 **Route**
