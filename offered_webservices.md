@@ -635,40 +635,40 @@ pushed to the route are instantly published on the vendor's facebook page.
 
 **Route**
 
-  POST users/facebook_status?website_url=URL&product_id=PRODUCT_ID
-  (POST users/:website_url/products/:product_id/facebook_status deprecated)
+    POST users/facebook_status?website_url=URL&product_id=PRODUCT_ID
+    (POST users/:website_url/products/:product_id/facebook_status deprecated)
 
 **Params**
 
-  :product_id = the product id of a specific product that should be promoted.
-  :website_url = the website url of the easymarketing user. Required.
+    :product_id = the product id of a specific product that should be promoted.
+    :website_url = the website url of the easymarketing user. Required.
 
 **Example**
 
-  POST https://api.easymarketing.de/users/foobar.com/products/1/facebook_status?access_token=c576f0136149a2e2d9127b3901015545
+    POST https://api.easymarketing.de/users/foobar.com/products/1/facebook_status?access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
-  Status: 200 if all went fine.
+    Status: 200 if all went fine.
 
-  {
-    "website_url": "foobar.com",
-    "product_id": 1
-  }
+    {
+      "website_url": "foobar.com",
+      "product_id": 1
+    }
 
-  Status: 202 if product not found in our database. We will attempt to extract it..
+    Status: 202 if product not found in our database. We will attempt to extract it..
 
-  {
-    "website_url": "foobar.com",
-    "product_id": 1
-  }
+    {
+      "website_url": "foobar.com",
+      "product_id": 1
+    }
 
-  Status: 400 if other errors occur and can not post to facebook.
+    Status: 400 if other errors occur and can not post to facebook.
 
-  {
-    "website_url": "foobar.com",
-    "product_id": 1
-  }
+    {
+      "website_url": "foobar.com",
+      "product_id": 1
+    }
 
 ## Pixelplan for retargeting
 
