@@ -670,15 +670,15 @@ pushed to the route are instantly published on the vendor's facebook page.
       "product_id": 1
     }
 
-## Pixelplan for retargeting
+## IDs for retargeting
 
 **Route**
 
-    GET /pixelplan
+    GET /retargeting_id
 
 **Example**
 
-    GET https://api.easymarketing.de/pixelplan?access_token=c576f0136149a2e2d9127b3901015545
+    GET https://api.easymarketing.de/retargeting_id?access_token=c576f0136149a2e2d9127b3901015545
 
 **Response**
 
@@ -687,12 +687,7 @@ If success:
     Status: 200
 
     {
-      retargeting_pixel: "code_retargeting",
-      homepage_pixel: "code_homepage",
-      category_pixel: "code_category",
-      product_pixel: "code_product",
-      cart_pixel: "code_cart",
-      checkout_pixel: "code_checkout"
+      adscale_id: "123456789"
     }
 
 If success but no retargeting data added to the account:
@@ -700,12 +695,7 @@ If success but no retargeting data added to the account:
     Status: 202
 
     {
-      retargeting_pixel: null,
-      homepage_pixel: null,
-      category_pixel: null,
-      product_pixel: null,
-      cart_pixel: null,
-      checkout_pixel: null
+      adscale_id: null
     }
 
 If access token is wrong:
