@@ -537,6 +537,11 @@ If success:
     {
       num_categories: 10,
       num_products: 3200,
+      api_properly_setup: 1395682278,
+      // The time when crawling started (UNIX timestamp)
+      created_at: 1395682268,
+      // The time when the crawler has last been updated (UNIX timestamp)
+      updated_at: 1395682240
     }
 
 If access token is wrong:
