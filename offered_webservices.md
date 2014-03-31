@@ -284,10 +284,10 @@ of the deal can be tracked.
 
 ## Lead tracker
 
-This returns a tracking code that is to be integrated on the vendor's registration
-success page. This way easymarketing can track leads for you. This lead tracker should 
-be stored in your local DB for later use. This can be requested when the user proceeds 
-and installs the easymarketing extension in your system.
+This returns a tracking code that is to be integrated on two pages, the contact pages as 
+well as the checkout page (after shopping-basket). This way easymarketing can track leads 
+for you. This lead tracker should be stored in your local DB for later use. This can be 
+requested when the user proceeds and installs the easymarketing extension in your system.
 
 **Route**
 
