@@ -300,6 +300,8 @@ Example:
 
 * `mpn` manufacturer part number. 
 
+* `rrp` recommended retail price. 
+
 
 ### API Endpoint for a single product.
 
