@@ -250,7 +250,6 @@ Products can also be empty.
 * `gtin` are the Global Trade Item Numbers (GTINs). GTINs include UPC, EAN (in Europe), JAN (in Japan), and ISBN; Example: "8808992787426". Type `String`. If you do not have any of the values in your database, provide `null` as value. Output is required.
 
 
-
 #### Optional Attributes
 
 * `google_category` is the Google Category from the [Google Product Taxonomy](https://www.google.com/basepages/producttype/taxonomy.en-US.txt). This attribute of the type `String`.
@@ -296,6 +295,11 @@ Example:
 * `discount_absolute` shows that there is an absolute discount on a product. For example a 2.00 Euro discount. Type `Float`.
 
 * `discount_percentage` shows that there is a relative discount of x-percent of the original price. Type `Float`. For example `9.5` would equal a discount of 9.5% of the original product price.
+
+* `brand` the brand name which is used on the market for that product.
+
+* `mpn` manufacturer part number. 
+
 
 ### API Endpoint for a single product.
 
