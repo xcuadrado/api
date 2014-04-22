@@ -259,6 +259,8 @@ The conversion tracker code should be adjusted for each checkout. It contains th
 The value `0` should be replaced by a regexp with the value of the shopping-cart, so that the value
 of the deal can be tracked.
 
+Also the conversion value in the img-tag should be replaced.
+
 Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
 
 **Route**
