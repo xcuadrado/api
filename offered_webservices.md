@@ -259,6 +259,8 @@ The conversion tracker code should be adjusted for each checkout. It contains th
 The value `0` should be replaced by a regexp with the value of the shopping-cart, so that the value
 of the deal can be tracked.
 
+Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
+
 **Route**
 
 	GET /conversion_tracker?&website_url=URL
@@ -289,6 +291,8 @@ well as the checkout page (after shopping-basket). This way easymarketing can tr
 for you. This lead tracker should be stored in your local DB for later use. This can be 
 requested when the user proceeds and installs the easymarketing extension in your system.
 
+Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
+
 **Route**
 
         GET /lead_tracker?website_url=URL
@@ -318,6 +322,7 @@ Retrieve the data required for the google site verification. The returned data m
 root directory of the shop (using html_content and html_file_name) or the data meta-tag can be added to the start page
 of the shop instead.
 
+Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
 
 **Route**
 
