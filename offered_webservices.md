@@ -699,7 +699,8 @@ If success:
     Status: 200
 
     {
-      adscale_id: "123456789"
+      adscale_id: "123456789",
+      conversion_id: "AAAAAAAA"
     }
 
 If success but no retargeting data added to the account:
@@ -707,7 +708,8 @@ If success but no retargeting data added to the account:
     Status: 202
 
     {
-      adscale_id: null
+      adscale_id: null,
+      conversion_id: null
     }
 
 If access token is wrong:
