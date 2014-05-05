@@ -252,7 +252,7 @@ Adwords campaign. This conversion tracker should be stored in your local DB
 for later use. This can be requested when the user proceeds and installs the
 easymarketing extension in your system.
 
-Please don't replace the conversion value and leave it 0.
+Please replace the conversion value with the value of the shopping basket in the javascript as well as in the img-tag.
 
 Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
 
