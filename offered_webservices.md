@@ -159,6 +159,111 @@ You will receive all time data then.
     conversions: The amount of sales that have been generated. Integer.
     currency: ISO code of the user's currency. String.
 
+## List of campaigns (JSON)
+
+Returns a list of all campaigns that exist.
+
+**Route**
+
+    GET /campaigns
+
+**Example**
+
+    GET https://api.easymarketing.de/campaigns?access_token=c576f0136149a2e2d9127b3901015545
+    
+**Response**
+
+    {
+        "current_page": 1,
+        "per_page": 100,
+        "total_entries": 1,
+        "campaigns": [
+            {
+                "id": 409,
+                "active": false,
+                "campaign_id": 123,
+                "company_id": 106,
+                "cpc_fallback": 0.2,
+                "cpc_modifier": null,
+                "created_at": "2014-03-09T23:23:59+01:00",
+                "created_by_robot": true,
+                "daily_budget": 5,
+                "label": "easymarketing AdWords",
+                "manual_cpc_bidding": null,
+                "max_budget": 5,
+                "maximum_cpc": null,
+                "minimum_cpc": 0.15,
+                "updated_at": "2014-03-12T10:44:08+01:00"
+            }
+        ]
+    }
+
+## Performance data of campaign (JSON)
+
+Returns detailed performance data on a per-day basis for one campaign. To obtain the ID of a campaign, use the campaign list request described above (field "id" in each object).
+
+**Route**
+
+    GET /campaigns/:id
+    
+**Params**
+
+    :start_date - the start date that should be used to filter the data.
+      (String) in the format: YYYY-MM-DD
+    :end_date - the end date that should be used limit the data.
+      (String) in the format: YYYY-MM-DD
+
+**Example**
+
+    GET https://api.easymarketing.de/campaigns/409?access_token=c576f0136149a2e2d9127b3901015545&start_date=01-05-2014&end_date=02-05-2014
+    
+**Response**
+
+    [
+        {
+            "date": "2014-05-01",
+            "id": 209305,
+            "adwords_id": null,
+            "clicks": 0,
+            "impressions": 0,
+            "new_customers": 0,
+            "costs": 0,
+            "created_at": "2014-05-02T03:08:00+02:00",
+            "updated_at": "2014-05-02T03:08:00+02:00",
+            "transaction_id": null,
+            "campaign_id": null,
+            "day": "2014-05-01",
+            "adwords_campaign_id": 409,
+            "daily_budget": 5,
+            "lead_conversions": null,
+            "cost_per_conversion": 0,
+            "cost_per_click": 0,
+            "keywords": 949,
+            "ads": 4016
+        },
+        {
+            "date": "2014-05-02",
+            "id": 210440,
+            "adwords_id": null,
+            "clicks": 0,
+            "impressions": 0,
+            "new_customers": 0,
+            "costs": 0,
+            "created_at": "2014-05-03T03:08:20+02:00",
+            "updated_at": "2014-05-03T03:08:20+02:00",
+            "transaction_id": null,
+            "campaign_id": null,
+            "day": "2014-05-02",
+            "adwords_campaign_id": 409,
+            "daily_budget": 5,
+            "lead_conversions": null,
+            "cost_per_conversion": 0,
+            "cost_per_click": 0,
+            "keywords": 949,
+            "ads": 4016
+        }
+    ]
+
 ## Analysis page
 
 This returns the analysis page in an iFrame. The analysis page contains a
