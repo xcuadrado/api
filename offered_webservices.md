@@ -277,7 +277,9 @@ Adwords campaign. This conversion tracker should be stored in your local DB
 for later use. This can be requested when the user proceeds and installs the
 easymarketing extension in your system.
 
-Please replace the conversion value with the value of the shopping basket in the javascript as well as in the img-tag.
+Please replace the conversion value with the value of the shopping basket __2 times__: In the javascript as well as in the img-tag.
+
+There are two trackers provided, __code__ is for Google and __fb_code__ is for Facebook, as far as a Facebook tracker is available.
 
 Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
 
@@ -301,7 +303,7 @@ Please cache this value refreshing it once in a while (e.g. daily) and __do not 
 	{
 	  "user_id": 1,
 	  "code": '<script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 982579417; var google_conversion_language = "en"; var google_conversion_format = "3"; var google_conversion_color = "ffffff"; var google_conversion_label = "cdl_CJe02gcQ2fHD1AM"; var google_conversion_value = 0; var google_remarketing_only = false; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/> </div> </noscript>',
-	  "img": '<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/>'
+	  "fb_code": '<script>(function() {var _fbq = window._fbq || (window._fbq = []); ...&amp;cd[value]=0&amp;cd[currency]=EUR&amp;noscript=1" /></noscript>if (!_fbq.loaded) {var fbds = document.createElement('script');fbds.async = true;fbds.src='//connect.facebook.net/en_US/fbds.js';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(fbds, s);_fbq.loaded = true;}})();window._fbq = window._fbq || [];window._fbq.push(['track', '6015228631053', {'value':'0.00','currency':'EUR'}]);</script><noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6015228631053&amp;cd[value]=0&amp;cd[currency]=EUR&amp;noscript=1" /></noscript>'
 	}
 
 ## Lead tracker
@@ -310,6 +312,8 @@ This returns a tracking code that is to be integrated on two pages, the contact 
 well as the checkout page (after shopping-basket). This way easymarketing can track leads 
 for you. This lead tracker should be stored in your local DB for later use. This can be 
 requested when the user proceeds and installs the easymarketing extension in your system.
+
+There are two trackers provided, __code__ is for Google and __fb_code__ is for Facebook, as far as a Facebook tracker is available.
 
 Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
 
@@ -333,7 +337,7 @@ Please cache this value refreshing it once in a while (e.g. daily) and __do not 
         {
           "user_id": 1,
           "code": '<script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 982579417; var google_conversion_language = "en"; var google_conversion_format = "3"; var google_conversion_color = "ffffff"; var google_conversion_label = "cdl_CJe02gcQ2fHD1AM"; var google_conversion_value = 0; var google_remarketing_only = false; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/> </div> </noscript>',
-	        "img": '<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/982579417/?value=0&amp;label=cdl_CJe02gcQ2fHD1AM&amp;guid=ON&amp;script=0"/>'
+          "fb_code": '<script>(function() {var _fbq = window._fbq || (window._fbq = []); ...&amp;cd[value]=0&amp;cd[currency]=EUR&amp;noscript=1" /></noscript>if (!_fbq.loaded) {var fbds = document.createElement('script');fbds.async = true;fbds.src='//connect.facebook.net/en_US/fbds.js';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(fbds, s);_fbq.loaded = true;}})();window._fbq = window._fbq || [];window._fbq.push(['track', '6015228631053', {'value':'0.00','currency':'EUR'}]);</script><noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6015228631053&amp;cd[value]=0&amp;cd[currency]=EUR&amp;noscript=1" /></noscript>'
         }
 
 ## Get google site verification data
