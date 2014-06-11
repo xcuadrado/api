@@ -93,34 +93,32 @@ Returns a list of all campaigns that exist.
     
 **Response**
 
-    {
-        "current_page": 1,
-        "per_page": 100,
-        "total_entries": 1,
-        "campaigns": [
-            {
-                "id": 409,
-                "active": false,
-                "campaign_id": 123,
-                "company_id": 106,
-                "cpc_fallback": 0.2,
-                "cpc_modifier": null,
-                "created_at": "2014-03-09T23:23:59+01:00",
-                "created_by_robot": true,
-                "daily_budget": 5,
-                "label": "easymarketing AdWords",
-                "manual_cpc_bidding": null,
-                "max_budget": 5,
-                "maximum_cpc": null,
-                "minimum_cpc": 0.15,
-                "updated_at": "2014-03-12T10:44:08+01:00"
-            }
-        ]
-    }
+	[
+		{
+			label: "easymarketing Shopping",
+			active: true,
+			campaign_daily_budget: 25,
+			campaign_id: 123
+		},
+		{
+			label: "easymarketing Robog",
+			active: true,
+			campaign_daily_budget: 270,
+			campaign_id: 127
+		}
+	]
 
 ## Performance data of campaign (JSON)
 
-Returns detailed performance data on a per-day basis for one campaign. To obtain the ID of a campaign, use the campaign list request described above (field "id" in each object).
+Returns detailed performance data on a per-day basis for one campaign. To obtain the ID of a campaign, use the campaign list request described above.
+
+	Remark:
+	
+	cpo = cost per order
+	
+	cpl = cost per lead
+	
+	daily_budget = the budget which was effectively set for that day
 
 **Route**
 
@@ -139,50 +137,36 @@ Returns detailed performance data on a per-day basis for one campaign. To obtain
     
 **Response**
 
-    [
-        {
-            "date": "2014-05-01",
-            "id": 209305,
-            "adwords_id": null,
-            "clicks": 0,
-            "impressions": 0,
-            "new_customers": 0,
-            "costs": 0,
-            "created_at": "2014-05-02T03:08:00+02:00",
-            "updated_at": "2014-05-02T03:08:00+02:00",
-            "transaction_id": null,
-            "campaign_id": null,
-            "day": "2014-05-01",
-            "adwords_campaign_id": 409,
-            "daily_budget": 5,
-            "lead_conversions": null,
-            "cost_per_conversion": 0,
-            "cost_per_click": 0,
-            "keywords": 949,
-            "ads": 4016
-        },
-        {
-            "date": "2014-05-02",
-            "id": 210440,
-            "adwords_id": null,
-            "clicks": 0,
-            "impressions": 0,
-            "new_customers": 0,
-            "costs": 0,
-            "created_at": "2014-05-03T03:08:20+02:00",
-            "updated_at": "2014-05-03T03:08:20+02:00",
-            "transaction_id": null,
-            "campaign_id": null,
-            "day": "2014-05-02",
-            "adwords_campaign_id": 409,
-            "daily_budget": 5,
-            "lead_conversions": null,
-            "cost_per_conversion": 0,
-            "cost_per_click": 0,
-            "keywords": 949,
-            "ads": 4016
-        }
-    ]
+	{
+		label: "easymarketing Shopping",
+		active: true,
+		campaign_id: 123,
+		campaign_daily_budget: 25,
+		day_data: [
+			{
+				date: "2014-06-02",
+				clicks: 100,
+				impressions: 2000,
+				costs: 25,
+				cpo: 2.5,
+				cpl: 1.25,
+				daily_budget: 25,
+				orders: 10,
+				leads: 20
+			},
+			{
+				date: "2014-06-03",
+				clicks: 27,
+				impressions: 4155,
+				costs: 28.35,
+				cpo: 28.35,
+				cpl: 14.18,
+				daily_budget: 25,
+				orders: 1,
+				leads: 2
+			}
+		]
+	}
 
 ## Analysis page
 
