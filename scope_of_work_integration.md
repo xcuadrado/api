@@ -70,6 +70,12 @@ via an interface. The data is then used to generate ads in the client's
 adwords account. This interface is to be developed by the easymarketing
 partners.
 
+The module must provide proper possibilities for the user to select which 
+products / categories are to be exported (provided in the JSON interface).
+
+Further missing attributes must be added to the shopsystem so that the user
+can configure it, e.g. google category, google product type.
+
 The process is usually the following:
 
 * The user creates an EASYMARKETING account.
@@ -303,6 +309,13 @@ Not all proudcts will contain these fields
 
 * `rrp` recommended retail price. 
 
+If possible free custom fields should be supported which are usually without use and can be mapped on easymarketing side.
+
+* `free_1` free field 1.
+
+* `free_2` free field 2. 
+
+* `free_3` free field 3. 
 
 ### API Endpoint for a single product.
 
