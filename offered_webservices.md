@@ -267,6 +267,8 @@ There are two trackers provided, __code__ is for Google and __fb_code__ is for F
 
 Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
 
+Remark: The tracker may also not be available at the time when the module is configured if it has not been set-up yet in the easymarketing backend. The module should be able to handle this.
+
 **Route**
 
 	GET /conversion_tracker?&website_url=URL
@@ -300,6 +302,8 @@ requested when the user proceeds and installs the easymarketing extension in you
 There are two trackers provided, __code__ is for Google and __fb_code__ is for Facebook, as far as a Facebook tracker is available.
 
 Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
+
+Remark: The tracker may also not be available at the time when the module is configured if it has not been set-up yet in the easymarketing backend. The module should be able to handle this.
 
 **Route**
 
