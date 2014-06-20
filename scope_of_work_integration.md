@@ -249,18 +249,6 @@ Products can also be empty.
 
 * `gtin` are the Global Trade Item Numbers (GTINs). GTINs include UPC, EAN (in Europe), JAN (in Japan), and ISBN; Example: "8808992787426". Type `String`. If you do not have any of the values in your database, provide `null` as value. Output is required.
 
-
-#### Optional Attributes
-
-* `google_category` is the Google Category from the [Google Product Taxonomy](https://www.google.com/basepages/producttype/taxonomy.en-US.txt). This attribute of the type `String`.
-
-* The `colors` attribute is an `Array of String`. Each array element represents a color in which this product is available.
-
-* The `margin` of this product. How much does the shop make on every sale?
-  This is useful for us in order to better promote specific products. Type `Float`.
-
-* `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `Boolean`
-
 * For the `condition` attribute there are only three accepted `String` values:
 
 	* 'new': The product is brand-new and has never been used. It's in its original packaging which has not been opened.
@@ -291,6 +279,19 @@ Example:
 		"service": "Standard",
 		"price": 4.95
 	}
+
+
+#### Optional Attributes
+Not all proudcts will contain these fields
+
+* `google_category` is the Google Category from the [Google Product Taxonomy](https://www.google.com/basepages/producttype/taxonomy.en-US.txt). This attribute of the type `String`.
+
+* The `colors` attribute is an `Array of String`. Each array element represents a color in which this product is available.
+
+* The `margin` of this product. How much does the shop make on every sale?
+  This is useful for us in order to better promote specific products. Type `Float`.
+
+* `adult` The adult status assigned to your product listings through the ‘adult’ attribute affects where product listings can show. For example, "adult" or "non-family safe" product listings aren't allowed to be shown in certain countries or to a certain audience. Type `Boolean`
 
 * `discount_absolute` shows that there is an absolute discount on a product. For example a 2.00 Euro discount. Type `Float`.
 
