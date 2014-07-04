@@ -10,7 +10,7 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 	MINOR version when you add functionality in a backwards-compatible manner, and
 	PATCH version when you make backwards-compatible bug fixes.
 
-The version of this document is **1.0.0**.
+The version of this document is **1.0.1**.
 
 This document describes the EASYMARKETING JSON API major version **1**.
 
@@ -288,7 +288,9 @@ Example:
 
 
 #### Optional Attributes
-Not all proudcts will contain these fields
+Not all proudcts will contain these fields.
+These attributes are optional per product but they are **required for the API to support those fields**.
+
 
 * `google_category` is the Google Category from the [Google Product Taxonomy](https://www.google.com/basepages/producttype/taxonomy.en-US.txt). This attribute of the type `String`.
 
