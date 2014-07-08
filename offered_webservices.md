@@ -328,6 +328,50 @@ Remark: The tracker may also not be available at the time when the module is con
           "fb_code": '<script>(function() {var _fbq = window._fbq || (window._fbq = []); ...&amp;cd[value]=0&amp;cd[currency]=EUR&amp;noscript=1" /></noscript>if (!_fbq.loaded) {var fbds = document.createElement('script');fbds.async = true;fbds.src='//connect.facebook.net/en_US/fbds.js';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(fbds, s);_fbq.loaded = true;}})();window._fbq = window._fbq || [];window._fbq.push(['track', '6015228631053', {'value':'0.00','currency':'EUR'}]);</script><noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6015228631053&amp;cd[value]=0&amp;cd[currency]=EUR&amp;noscript=1" /></noscript>'
         }
 
+## Remarketing Code
+
+This returns a tracking code that is to be integrated on each page of the site.
+
+Please cache this value refreshing it once in a while (e.g. daily) and __do not call our API on each request__! 
+
+Remark: The tracker may also not be available at the time when the module is configured if it has not been set-up yet in the easymarketing backend. The module should be able to handle this.
+
+**Route**
+
+        GET /google_remarketing_code?website_url=URL
+
+**Params**
+
+        :website_url = url of the vendor without http, required
+
+**Example**
+
+        https://api.easymarketing.de/google_remarketing_code?website_url=google.de&access_token=c576f0136149a2e2d9127b3901015545
+
+**Response**
+
+        Status: 200
+
+        {
+          "user_id": 1,
+          "code": '<!-- Google Code für ein Remarketing-Tag --><!--------------------------------------------------Remarketing-Tags dürfen nicht mit personenbezogenen Daten verknüpft oder auf Seiten platziert werden, die sensiblen Kategorien angehören. Weitere Informationen und Anleitungen zur Einrichtung des Tags erhalten Sie unter: http://google.com/ads/remarketingsetup ---------------------------------------------------> <script type="text/javascript">var google_tag_params = {ecomm_prodid: 'REPLACE_WITH_VALUE',ecomm_pagetype: 'REPLACE_WITH_VALUE',ecomm_totalvalue: 'REPLACE_WITH_VALUE',};</script><script type="text/javascript">/* <![CDATA[ */var google_conversion_id = 12345678;vargoogle_custom_params = window.google_tag_params;var google_remarketing_only = true;/* ]]> */</script><script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script><noscript><div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/12345678/?value=0&amp;guid=ON&amp;script=0"/> </div></noscript>'
+        }
+
+If access token is wrong:
+
+    Status: 401
+
+    {}
+
+
+If there is an error:
+
+    Status: 400
+
+    {
+      errors: ["Error messages"]
+    }
+    
 ## Get google site verification data
 
 Retrieve the data required for the google site verification. The returned data must be placed either as html-page in the
